@@ -23,17 +23,10 @@ import Servant
 import Servant.JS
 import System.Random
 
-type API = "point" :> Get '[JSON] Point
+type LimitedAPI = "point" :> Get '[JSON] Point
       :<|> "books" :> QueryParam "q" Text :> Get '[JSON] (Search Book)
-      -- :<|> Get '[HTML] RawHtml
 
-type API' = API :<|> Raw
-
---newtype RawHtml = RawHtml { unRaw :: BS.ByteString }
-
--- tell Servant how to render the newtype to html page, in this case simply unwrap it
---instance MimeRender HTML RawHtml where
---    mimeRender _ =  unRaw
+type FullAPI = LimitedAPI :<|> Raw
 
 -------------------------------------------------------------------
 
@@ -97,28 +90,27 @@ home = liftIO . getStdRandom $ \g ->
       (ry, g'') = randomR (-1, 1) g'
   in (Point rx ry, g'')
 
-api :: Proxy API
-api = Proxy
+limitedApi :: Proxy LimitedAPI
+limitedApi = Proxy
 
-api' :: Proxy API'
-api' = Proxy
+fullApi :: Proxy FullAPI
+fullApi = Proxy
 
-server :: Server API
+server :: Server LimitedAPI
 server = randomPoint
     :<|> searchBook
-    -- :<|> fmap RawHtml (liftIO $ BS.readFile "static/index.html")
 
-server' :: Server API'
+server' :: Server FullAPI
 server' = server
      :<|> serveDirectoryWebApp "static"
 
 app :: Application
-app = serve api' server'
+app = serve fullApi server'
 
 runServer port = run port app
 
 apiJS1 :: Text
-apiJS1 = jsForAPI api jquery
+apiJS1 = jsForAPI limitedApi jquery
 
 writeJSFiles :: IO ()
 writeJSFiles = do
