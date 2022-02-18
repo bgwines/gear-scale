@@ -1,5 +1,4 @@
 {-# LANGUAGE DataKinds #-}
-{-# LANGUAGE DataKinds #-}
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE TypeOperators #-}
@@ -20,6 +19,16 @@ import Network.Wai
 import Network.Wai.Handler.Warp
 import qualified Data.Text as T
 import Servant
+    ( serve,
+      serveDirectoryWebApp,
+      type (:<|>)(..),
+      JSON,
+      QueryParam,
+      Raw,
+      type (:>),
+      Get,
+      Server )
+import GHC.IO ()
 import Servant.JS
 import System.Random
 
@@ -36,6 +45,7 @@ data Point = Point
   } deriving Generic
 
 instance ToJSON Point
+
 
 data Search a = Search
   { query   :: Text
@@ -96,24 +106,26 @@ limitedApi = Proxy
 fullApi :: Proxy FullAPI
 fullApi = Proxy
 
-server :: Server LimitedAPI
-server = randomPoint
-    :<|> searchBook
-
-server' :: Server FullAPI
-server' = server
-     :<|> serveDirectoryWebApp "static"
+server :: Server FullAPI
+server = (randomPoint
+    :<|> searchBook)
+    :<|> serveDirectoryWebApp "static"
 
 app :: Application
-app = serve fullApi server'
+app = serve fullApi server
 
+runServer :: Port -> IO ()
 runServer port = run port app
 
-apiJS1 :: Text
-apiJS1 = jsForAPI limitedApi jquery
+--------
+-- JS --
+--------
+
+apiJS :: Text
+apiJS = jsForAPI limitedApi jquery
 
 writeJSFiles :: IO ()
 writeJSFiles = do
-  T.writeFile "static/api.js" apiJS1
+  T.writeFile "static/api.js" apiJS
   jq <- T.readFile =<< Language.Javascript.JQuery.file
   T.writeFile "static/jq.js" jq

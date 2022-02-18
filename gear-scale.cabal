@@ -32,11 +32,11 @@ executable gear-scale
 
     -- LANGUAGE extensions used by modules in this package.
     -- other-extensions:
-    build-depends:    base ^>=4.14.3.0
-                    , servant ^>= 0.19
-                    , servant-server ^>= 0.19
-                    , js-jquery ^>= 3.3.1
-                    , servant-js ^>= 0.9.4.2
+    build-depends:    base
+                    , servant
+                    , servant-server
+                    , js-jquery
+                    , servant-js
                     , text
                     , time
                     , aeson

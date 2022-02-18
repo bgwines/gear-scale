@@ -1,0 +1,5 @@
+resolver: lts-18.25
+packages:
+- .
+extra-deps:
+- servant-js-0.9.4.2@sha256:b2d973b43bfa69f35900bf46e989348b7300c398b599ddf74b90a06173c023f2,3522
