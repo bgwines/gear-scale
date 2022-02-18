@@ -8,15 +8,15 @@ module Server
   , writeJSFiles
   ) where
 
-import Control.Monad.IO.Class
-import Data.Aeson
-import Data.Proxy
+import Control.Monad.IO.Class ( MonadIO(..) )
+import Data.Aeson ( ToJSON )
+import Data.Proxy ( Proxy(..) )
 import Data.Text as T (Text)
 import Data.Text.IO as T (writeFile, readFile)
-import GHC.Generics
-import Language.Javascript.JQuery
-import Network.Wai
-import Network.Wai.Handler.Warp
+import GHC.Generics ( Generic )
+import Language.Javascript.JQuery ( file )
+import Network.Wai ( Application )
+import Network.Wai.Handler.Warp ( run, Port )
 import qualified Data.Text as T
 import Servant
     ( serve,
@@ -29,11 +29,12 @@ import Servant
       Get,
       Server )
 import GHC.IO ()
-import Servant.JS
-import System.Random
+import Servant.JS ( jsForAPI, jquery )
+import System.Random ( getStdRandom, Random(randomR) )
 
-type LimitedAPI = "point" :> Get '[JSON] Point
-      :<|> "books" :> QueryParam "q" Text :> Get '[JSON] (Search Book)
+type LimitedAPI
+  = "point" :> Get '[JSON] Point
+    :<|> "books" :> QueryParam "q" Text :> Get '[JSON] (Search Book)
 
 type FullAPI = LimitedAPI :<|> Raw
 

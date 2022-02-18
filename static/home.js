@@ -1,8 +1,10 @@
 
-import * as api from "api";
+import * as api from "./api.js";
 
-api.getPoint((r) => {
-  console.log(r);
-}, (e) => {
-  console.log(e)
-});
+console.log(api);
+console.log(api.getPoint);
+//api.getPoint((r) => {
+//  console.log(r);
+//}, (e) => {
+//  console.log(e)
+//});
