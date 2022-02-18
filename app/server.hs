@@ -6,17 +6,16 @@ module Server
 
 import Servant ( type (:<|>)(..) )
 
-import qualified Network.Wai ( Application )
-import qualified Network.Wai.Handler.Warp ( run, Port )
+import qualified Network.Wai
+import qualified Network.Wai.Handler.Warp
 import qualified Servant
-    ( serve,
-      serveDirectoryWebApp,
-      Server )
 import qualified ServerAPI
+import qualified ServerHandlers
+
 
 server :: Servant.Server ServerAPI.FullAPI
-server = (ServerAPI.randomPoint
-    :<|> ServerAPI.searchBook)
+server = (ServerHandlers.randomPoint
+    :<|> ServerHandlers.searchBook)
     :<|> Servant.serveDirectoryWebApp "static"
 
 app :: Network.Wai.Application

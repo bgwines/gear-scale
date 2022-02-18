@@ -1,9 +1,12 @@
 {-# LANGUAGE DeriveGeneric #-}
 
 module Types
-  ( GearKind
-  , GearItem
-  , GearSelection
+  ( GearKind(..)
+  , GearItem(..)
+  , GearSelection(..)
+  , Search(..)
+  , Book(..)
+  , Point(..)
   ) where
 
 import Data.Aeson ( ToJSON )
@@ -37,3 +40,26 @@ data GearSelection = GearSelection
   } deriving Generic
 
 instance ToJSON GearSelection
+
+data Point = Point
+  { x :: Double
+  , y :: Double
+  } deriving Generic
+
+instance ToJSON Point
+
+
+data Search a = Search
+  { query   :: T.Text
+  , results :: [a]
+  } deriving Generic
+
+instance ToJSON a => ToJSON (Search a)
+
+data Book = Book
+  { author :: T.Text
+  , title  :: T.Text
+  , year   :: Int
+  } deriving Generic
+
+instance ToJSON Book
