@@ -31,6 +31,7 @@ import Servant
 import GHC.IO ()
 import Servant.JS ( writeJSForAPI, vanillaJS )
 import System.Random ( getStdRandom, Random(randomR) )
+import qualified Types
 
 type LimitedAPI
   = "point" :> Get '[JSON] Point
