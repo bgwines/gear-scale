@@ -29,7 +29,7 @@ import Servant
       Get,
       Server )
 import GHC.IO ()
-import Servant.JS ( jsForAPI, jquery )
+import Servant.JS ( writeJSForAPI, vanillaJS )
 import System.Random ( getStdRandom, Random(randomR) )
 
 type LimitedAPI
@@ -122,11 +122,5 @@ runServer port = run port app
 -- JS --
 --------
 
-apiJS :: Text
-apiJS = jsForAPI limitedApi jquery
-
 writeJSFiles :: IO ()
-writeJSFiles = do
-  T.writeFile "static/api.js" apiJS
-  jq <- T.readFile =<< Language.Javascript.JQuery.file
-  T.writeFile "static/jq.js" jq
+writeJSFiles = writeJSForAPI limitedApi vanillaJS "static/api.js"
