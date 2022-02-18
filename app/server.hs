@@ -4,7 +4,10 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE TypeOperators #-}
 
-module Server where
+module Server
+  ( runServer
+  , writeJSFiles
+  ) where
 
 import Control.Monad.IO.Class
 import Data.Aeson
@@ -22,8 +25,17 @@ import System.Random
 
 type API = "point" :> Get '[JSON] Point
       :<|> "books" :> QueryParam "q" Text :> Get '[JSON] (Search Book)
+      -- :<|> Get '[HTML] RawHtml
 
 type API' = API :<|> Raw
+
+--newtype RawHtml = RawHtml { unRaw :: BS.ByteString }
+
+-- tell Servant how to render the newtype to html page, in this case simply unwrap it
+--instance MimeRender HTML RawHtml where
+--    mimeRender _ =  unRaw
+
+-------------------------------------------------------------------
 
 data Point = Point
   { x :: Double
@@ -79,6 +91,11 @@ randomPoint = liftIO . getStdRandom $ \g ->
       (ry, g'') = randomR (-1, 1) g'
   in (Point rx ry, g'')
 
+home :: MonadIO m => m Point
+home = liftIO . getStdRandom $ \g ->
+  let (rx, g')  = randomR (-1, 1) g
+      (ry, g'') = randomR (-1, 1) g'
+  in (Point rx ry, g'')
 
 api :: Proxy API
 api = Proxy
@@ -89,12 +106,22 @@ api' = Proxy
 server :: Server API
 server = randomPoint
     :<|> searchBook
+    -- :<|> fmap RawHtml (liftIO $ BS.readFile "static/index.html")
 
 server' :: Server API'
 server' = server
-     :<|> serveDirectoryFileServer "static"
+     :<|> serveDirectoryWebApp "static"
 
 app :: Application
 app = serve api' server'
 
 runServer port = run port app
+
+apiJS1 :: Text
+apiJS1 = jsForAPI api jquery
+
+writeJSFiles :: IO ()
+writeJSFiles = do
+  T.writeFile "static/api.js" apiJS1
+  jq <- T.readFile =<< Language.Javascript.JQuery.file
+  T.writeFile "static/jq.js" jq
