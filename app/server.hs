@@ -15,7 +15,7 @@ import qualified ServerHandlers
 
 server :: Servant.Server ServerAPI.FullAPI
 server = (ServerHandlers.randomPoint
-    :<|> ServerHandlers.searchBook)
+    :<|> ServerHandlers.searchPoint)
     :<|> Servant.serveDirectoryWebApp "static"
 
 app :: Network.Wai.Application

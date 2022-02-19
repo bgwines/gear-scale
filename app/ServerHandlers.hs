@@ -2,7 +2,7 @@
 
 module ServerHandlers
   ( randomPoint
-  , searchBook
+  , searchPoint
 ) where
 
 import Control.Monad.IO.Class ( MonadIO(..) )
@@ -13,28 +13,20 @@ import qualified Types
 mkSearch :: T.Text -> [a] -> Types.Search a
 mkSearch = Types.Search
 
-book :: T.Text -> T.Text -> Int -> Types.Book
-book = Types.Book
-
-books :: [Types.Book]
-books =
-  [ book "Paul Hudak" "The Haskell School of Expression: Learning Functional Programming through Multimedia" 2000
-  , book "Bryan O'Sullivan, Don Stewart, and John Goerzen" "Real World Haskell" 2008
-  , book "Miran Lipovača" "Learn You a Haskell for Great Good!" 2011
-  , book "Graham Hutton" "Programming in Haskell" 2007
-  , book "Simon Marlow" "Parallel and Concurrent Programming in Haskell" 2013
-  , book "Richard Bird" "Introduction to Functional Programming using Haskell" 1998
+points :: [Types.Point]
+points =
+  [ Types.Point 0.0 0.0
+  , Types.Point 0.1 0.1
+  , Types.Point 0.2 0.2
+  , Types.Point 0.3 0.3
+  , Types.Point 0.4 0.4
+  , Types.Point 0.5 0.5
   ]
 
-searchBook :: Monad m => Maybe T.Text -> m (Types.Search Types.Book)
-searchBook Nothing  = return (Types.Search "" books)
-searchBook (Just q) = return (Types.Search q books')
-
-  where books' = filter (\b -> q' `T.isInfixOf` T.toLower (Types.author b)
-                            || q' `T.isInfixOf` T.toLower (Types.title b)
-                        )
-                        books
-        q' = T.toLower q
+searchPoint :: Monad m => Maybe T.Text -> m (Types.Search Types.Point)
+searchPoint Nothing  = return (Types.Search "" points)
+searchPoint (Just q) = return (Types.Search q points')
+  where points' = filter (\p -> q `T.isInfixOf` (T.pack $ show p)) points
 
 randomPoint :: MonadIO m => m Types.Point
 randomPoint = liftIO . getStdRandom $ \g ->

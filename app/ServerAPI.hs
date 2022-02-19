@@ -25,7 +25,7 @@ import qualified Types
 
 type LimitedAPI
   = "point" :> Get '[JSON] Types.Point
-    :<|> "books" :> QueryParam "q" T.Text :> Get '[JSON] (Types.Search Types.Book)
+    :<|> "points" :> QueryParam "q" T.Text :> Get '[JSON] (Types.Search Types.Point)
 
 type FullAPI = LimitedAPI :<|> Raw
 

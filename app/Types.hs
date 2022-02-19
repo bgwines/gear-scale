@@ -5,7 +5,6 @@ module Types
   , GearItem(..)
   , GearSelection(..)
   , Search(..)
-  , Book(..)
   , Point(..)
   ) where
 
@@ -44,7 +43,7 @@ instance ToJSON GearSelection
 data Point = Point
   { x :: Double
   , y :: Double
-  } deriving Generic
+  } deriving (Generic, Show)
 
 instance ToJSON Point
 
@@ -55,11 +54,3 @@ data Search a = Search
   } deriving Generic
 
 instance ToJSON a => ToJSON (Search a)
-
-data Book = Book
-  { author :: T.Text
-  , title  :: T.Text
-  , year   :: Int
-  } deriving Generic
-
-instance ToJSON Book
