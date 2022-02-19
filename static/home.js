@@ -1,13 +1,13 @@
 
-import * as api from "./api.js";
+//import * as api from "./api.js";
 
-api.getPoint((r) => {
+getPoint((r) => {
   console.log(r);
 }, (e) => {
   console.log(e)
 });
 
-api.getBooks("haskell", (r) => {
+getPoints("0.2", (r) => {
   console.log(r);
 }, (e) => {
   console.log(e)

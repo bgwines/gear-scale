@@ -1,5 +1,5 @@
 
-export function getPoint(onSuccess, onError) {
+var getPoint = function(onSuccess, onError) {
   var xhr = new XMLHttpRequest();
   xhr.open('GET', '/point', true);
   xhr.setRequestHeader('Accept', 'application/json');
@@ -20,9 +20,9 @@ export function getPoint(onSuccess, onError) {
   xhr.send(null);
 };
 
-export function getBooks(q, onSuccess, onError) {
+var getPoints = function(q, onSuccess, onError) {
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', '/books' + '?q=' + encodeURIComponent(q), true);
+  xhr.open('GET', '/points' + '?q=' + encodeURIComponent(q), true);
   xhr.setRequestHeader('Accept', 'application/json');
   xhr.onreadystatechange = function () {
     var res = null;
