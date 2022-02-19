@@ -5,7 +5,6 @@ module Types
   , GearItem(..)
   , GearSelection(..)
   , Search(..)
-  , Point(..)
   ) where
 
 import Data.Aeson ( ToJSON )
@@ -39,13 +38,6 @@ data GearSelection = GearSelection
   } deriving Generic
 
 instance ToJSON GearSelection
-
-data Point = Point
-  { x :: Double
-  , y :: Double
-  } deriving (Generic, Show)
-
-instance ToJSON Point
 
 
 data Search a = Search

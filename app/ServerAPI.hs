@@ -21,11 +21,11 @@ import Servant
   , JSON
   , Raw
   , QueryParam )
+import qualified DB
 import qualified Types
 
 type LimitedAPI
-  = "point" :> Get '[JSON] Types.Point
-    :<|> "points" :> QueryParam "q" T.Text :> Get '[JSON] (Types.Search Types.Point)
+    = "searchGearItems" :> QueryParam "q" T.Text :> Get '[JSON] (Types.Search DB.GearItem)
 
 type FullAPI = LimitedAPI :<|> Raw
 
