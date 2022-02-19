@@ -28,6 +28,7 @@ executable gear-scale
 
     -- Modules included in this executable, other than Main.
     other-modules:
+        DB
         JSAPI
         Server
         ServerAPI
@@ -55,5 +56,6 @@ executable gear-scale
                     , beam-core
                     , beam-migrate
                     , beam-sqlite
+                    , sqlite-simple
     hs-source-dirs:   app
     default-language: Haskell2010
