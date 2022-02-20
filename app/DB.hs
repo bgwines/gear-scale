@@ -26,6 +26,7 @@ import Database.Beam
       insert,
       insertValues,
       runInsert,
+      runSelectReturningOne,
       runSelectReturningList,
       select,
       all_,
@@ -117,13 +118,13 @@ putGearItem gearItem = do
   conn <- open dbName -- TODO resource pool
   runBeamSqlite conn $ runInsert $ insert (_gear_items db) $ insertValues [ gearItem ]
 
-getAllGearItems :: IO [GearItemT Identity]
+getAllGearItems :: IO [GearItem]
 getAllGearItems = do
   conn <- open dbName
   runBeamSqlite conn $ runSelectReturningList $ select $ all_ (_gear_items db)
 
-getGearItemById :: Text -> IO [GearItemT Identity]
+getGearItemById :: Text -> IO (Maybe GearItem)
 getGearItemById gearItemId = do
   conn <- open dbName
   let matchingItems = lookup_ (_gear_items db) (GearItemId gearItemId)
-  runBeamSqlite conn $ runSelectReturningList matchingItems
+  runBeamSqlite conn $ runSelectReturningOne matchingItems

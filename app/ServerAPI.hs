@@ -31,7 +31,7 @@ import qualified Types
 
 type LimitedAPI
     =    "putGearItem"     :> ReqBody '[JSON] DB.GearItem
-                           :> Post '[JSON] ()
+                           :> Post '[JSON] T.Text
     :<|> "searchGearItems" :> QueryParam "q" T.Text
                            :> Get '[JSON] [DB.GearItem]
 
