@@ -34,7 +34,6 @@ executable gear-scale
         Server
         ServerAPI
         ServerHandlers
-        Types
 
     -- LANGUAGE extensions used by modules in this package.
     -- other-extensions:

@@ -94,12 +94,44 @@ instance Table GearItemT where
    data PrimaryKey GearItemT f = GearItemId (Columnar f Text) deriving (Generic, Beamable)
    primaryKey = GearItemId . _gearitemId
 
+--------------------
+-- GearSelectionT --
+--------------------
+
+--data GearSelection = GearSelection
+--  { item :: GearItem
+--  , selected :: Bool
+--  , isPersonalOverride :: Maybe Bool
+--  , inPack :: Bool
+--  , isOptional :: Bool
+--  , quantity :: Int
+--  } deriving Generic
+
+--data GearSelectionT f
+--    = GearSelection
+--    { _gearselectionId                 :: Columnar f Text
+--    , _gearselectionGearItemId         :: Columnar f Text
+--    , _gearselectionSelected           :: Columnar f Bool
+--    , _gearselectionIsPersonalOverride :: Columnar f (Maybe Bool)
+--    , _gearselectionInPack             :: Columnar f Bool
+--    , _gearselectionIsOptional         :: Columnar f Bool
+--    , _gearselectionQuantity           :: Columnar f Int }
+--    deriving Generic
+--instance Beamable GearSelectionT
+--type GearSelection = GearSelectionT Identity
+--deriving instance Show GearSelection
+--deriving instance Eq GearSelection
+--instance FromJSON GearSelection
+--instance ToJSON GearSelection where
+--  toEncoding = genericToEncoding defaultOptions
+
 --------
 -- DB --
 --------
 
 data Db f = Db
   { _gear_items :: f (TableEntity GearItemT)
+  , _gear_selections :: f (TableEntity GearSelectionT)
   }
   deriving (Generic, Database be)
 
