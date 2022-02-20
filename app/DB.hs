@@ -10,13 +10,13 @@
 {-# LANGUAGE UndecidableInstances #-}
 
 module DB
-  ( UserT
-  , User
-  , UserId
-  , Db
+  ( Db
   , db
-  , putUser
-  , getAllUsers
+  --( UserT
+  --, User
+  --, UserId
+  --, putUser
+  --, getAllUsers
   , putGearItem
   , getAllGearItems
   , GearItemT(..)
@@ -35,7 +35,11 @@ import Database.Beam
       runSelectReturningList,
       select,
       all_,
+      filter_,
+      just_,
+      lookup_,
       defaultDbSettings,
+      (==.),
       Beamable,
       Columnar,
       Database,
@@ -57,39 +61,35 @@ import Data.Aeson ( ToJSON, FromJSON, toEncoding, genericToEncoding, defaultOpti
 -- UserT --
 -----------
 
-data UserT f
-    = User
-    { _userId        :: Columnar f Text
-    , _userFirstName :: Columnar f Text }
-    deriving Generic
-instance Beamable UserT
-
-type User = UserT Identity
-deriving instance Show User
-deriving instance Eq User
-
-type UserId = PrimaryKey UserT Identity
-
-instance Table UserT where
-   data PrimaryKey UserT f = UserId (Columnar f Text) deriving (Generic, Beamable)
-   primaryKey = UserId . _userId
+--data UserT f
+--    = User
+--    { _userId        :: Columnar f Text
+--    , _userFirstName :: Columnar f Text }
+--    deriving Generic
+--instance Beamable UserT
+--
+--type User = UserT Identity
+--deriving instance Show User
+--deriving instance Eq User
+--
+--type UserId = PrimaryKey UserT Identity
+--
+--instance Table UserT where
+--   data PrimaryKey UserT f = UserId (Columnar f Text) deriving (Generic, Beamable)
+--   primaryKey = UserId . _userId
 
 --------------
 -- GearKind --
 --------------
 
 data GearKind = Base | Technical | Clothing | Electronic | Nutrition
-  deriving (Generic, Eq, Show, Read)
+  deriving (Generic, Eq, Show, Read, FromJSON, ToJSON)
 
 instance HasSqlValueSyntax be String => HasSqlValueSyntax be GearKind where
   sqlValueSyntax = autoSqlValueSyntax
 
 instance FromBackendRow Sqlite GearKind where
   fromBackendRow = read . unpack <$> fromBackendRow
-
-instance FromJSON GearKind
-instance ToJSON GearKind where
-    toEncoding = genericToEncoding defaultOptions
 
 ---------------
 -- GearItemT --
@@ -128,8 +128,9 @@ instance Table GearItemT where
 --------
 
 data Db f = Db
-  { _users :: f (TableEntity UserT)
-  , _gear_items :: f (TableEntity GearItemT) }
+  { _gear_items :: f (TableEntity GearItemT)
+  --, _users :: f (TableEntity UserT)
+  }
   deriving (Generic, Database be)
 
 db :: DatabaseSettings be Db
@@ -142,17 +143,15 @@ dbName = "gear_scale.db"
 -- DB API --
 ------------
 
-putUser :: User -> IO ()
-putUser user = do
-  conn <- open dbName
-  runBeamSqlite conn $ runInsert $ insert (_users db) $ insertValues [ user ]
+--putUser :: User -> IO ()
+--putUser user = do
+--  conn <- open dbName
+--  runBeamSqlite conn $ runInsert $ insert (_users db) $ insertValues [ user ]
 
-getAllUsers :: IO [UserT Identity]
-getAllUsers = do
-  conn <- open dbName
-  let allUsers = all_ (_users db)
-
-  runBeamSqlite conn $ runSelectReturningList $ select allUsers
+--getAllUsers :: IO [UserT Identity]
+--getAllUsers = do
+--  conn <- open dbName
+--  runBeamSqlite conn $ runSelectReturningList $ select $ all_ (_users db)
 
 putGearItem :: GearItem -> IO ()
 putGearItem gearItem = do
@@ -162,6 +161,10 @@ putGearItem gearItem = do
 getAllGearItems :: IO [GearItemT Identity]
 getAllGearItems = do
   conn <- open dbName
-  let allItems = all_ (_gear_items db)
+  runBeamSqlite conn $ runSelectReturningList $ select $ all_ (_gear_items db)
 
-  runBeamSqlite conn $ runSelectReturningList $ select allItems
+getGearItemById :: Text -> IO [GearItemT Identity]
+getGearItemById gearItemId = do
+  conn <- open dbName
+  let matchingItems = lookup_ (_gear_items db) (GearItemId gearItemId)
+  runBeamSqlite conn $ runSelectReturningList matchingItems
