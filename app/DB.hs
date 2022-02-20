@@ -12,11 +12,6 @@
 module DB
   ( Db
   , db
-  --( UserT
-  --, User
-  --, UserId
-  --, putUser
-  --, getAllUsers
   , putGearItem
   , getAllGearItems
   , GearItemT(..)
@@ -55,27 +50,6 @@ import Database.Beam.Sqlite ( runBeamSqlite, Sqlite )
 import Database.SQLite.Simple ( open )
 import Data.Text (Text, unpack)
 import Data.Aeson ( ToJSON, FromJSON, toEncoding, genericToEncoding, defaultOptions )
-
------------
--- UserT --
------------
-
---data UserT f
---    = User
---    { _userId        :: Columnar f Text
---    , _userFirstName :: Columnar f Text }
---    deriving Generic
---instance Beamable UserT
---
---type User = UserT Identity
---deriving instance Show User
---deriving instance Eq User
---
---type UserId = PrimaryKey UserT Identity
---
---instance Table UserT where
---   data PrimaryKey UserT f = UserId (Columnar f Text) deriving (Generic, Beamable)
---   primaryKey = UserId . _userId
 
 --------------
 -- GearKind --
@@ -125,7 +99,6 @@ instance Table GearItemT where
 
 data Db f = Db
   { _gear_items :: f (TableEntity GearItemT)
-  --, _users :: f (TableEntity UserT)
   }
   deriving (Generic, Database be)
 
@@ -138,16 +111,6 @@ dbName = "gear_scale.db"
 ------------
 -- DB API --
 ------------
-
---putUser :: User -> IO ()
---putUser user = do
---  conn <- open dbName
---  runBeamSqlite conn $ runInsert $ insert (_users db) $ insertValues [ user ]
-
---getAllUsers :: IO [UserT Identity]
---getAllUsers = do
---  conn <- open dbName
---  runBeamSqlite conn $ runSelectReturningList $ select $ all_ (_users db)
 
 putGearItem :: GearItem -> IO ()
 putGearItem gearItem = do
