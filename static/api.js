@@ -1,8 +1,9 @@
 
-var getPoint = function(onSuccess, onError) {
+var postPutGearItem = function(body, onSuccess, onError) {
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', '/point', true);
+  xhr.open('POST', '/putGearItem', true);
   xhr.setRequestHeader('Accept', 'application/json');
+  xhr.setRequestHeader('Content-Type', 'application/json');
   xhr.onreadystatechange = function () {
     var res = null;
     if (xhr.readyState === 4) {
@@ -17,12 +18,12 @@ var getPoint = function(onSuccess, onError) {
       }
     }
   };
-  xhr.send(null);
+  xhr.send(JSON.stringify(body));
 };
 
-var getPoints = function(q, onSuccess, onError) {
+var getSearchGearItems = function(q, onSuccess, onError) {
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', '/points' + '?q=' + encodeURIComponent(q), true);
+  xhr.open('GET', '/searchGearItems' + '?q=' + encodeURIComponent(q), true);
   xhr.setRequestHeader('Accept', 'application/json');
   xhr.onreadystatechange = function () {
     var res = null;

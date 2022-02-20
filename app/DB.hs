@@ -19,9 +19,11 @@ module DB
   , getAllUsers
   , putGearItem
   , getAllGearItems
-  , GearItemT
-  , GearItem
-  , GearItemId
+  , GearItemT(..)
+  , GearItem(..)
+  , GearItemId(..)
+  , GearKind(..)
+  , item
   ) where
 
 import Database.Beam
@@ -93,14 +95,17 @@ instance ToJSON GearKind where
 -- GearItemT --
 ---------------
 
+item :: GearItem
+item = DB.GearItem "id123" "Item 123" True 8.0 Base "id456"
+
 data GearItemT f
     = GearItem
-    { _gearItemId            :: Columnar f Text
-    , _gearItemName          :: Columnar f Text
-    , _gearItemIsPersonal    :: Columnar f Bool
-    , _gearItemOz            :: Columnar f Double
-    , _gearItemKind          :: Columnar f GearKind
-    , _gearItemCreatorUserId :: Columnar f Text }
+    { _gearitemId            :: Columnar f Text
+    , _gearitemName          :: Columnar f Text
+    , _gearitemIsPersonal    :: Columnar f Bool
+    , _gearitemOz            :: Columnar f Double
+    , _gearitemKind          :: Columnar f GearKind
+    , _gearitemCreatorUserId :: Columnar f Text }
     deriving Generic
 instance Beamable GearItemT
 
@@ -112,12 +117,11 @@ instance ToJSON GearItem where
 
 instance FromJSON GearItem
 
-    -- No need to provide a parseJSON implementation
 type GearItemId = PrimaryKey GearItemT Identity
 
 instance Table GearItemT where
    data PrimaryKey GearItemT f = GearItemId (Columnar f Text) deriving (Generic, Beamable)
-   primaryKey = GearItemId . _gearItemId
+   primaryKey = GearItemId . _gearitemId
 
 --------
 -- DB --
@@ -125,7 +129,7 @@ instance Table GearItemT where
 
 data Db f = Db
   { _users :: f (TableEntity UserT)
-  , _gearItems :: f (TableEntity GearItemT) }
+  , _gear_items :: f (TableEntity GearItemT) }
   deriving (Generic, Database be)
 
 db :: DatabaseSettings be Db
@@ -153,11 +157,11 @@ getAllUsers = do
 putGearItem :: GearItem -> IO ()
 putGearItem gearItem = do
   conn <- open dbName -- TODO resource pool
-  runBeamSqlite conn $ runInsert $ insert (_gearItems db) $ insertValues [ gearItem ]
+  runBeamSqlite conn $ runInsert $ insert (_gear_items db) $ insertValues [ gearItem ]
 
 getAllGearItems :: IO [GearItemT Identity]
 getAllGearItems = do
   conn <- open dbName
-  let allItems = all_ (_gearItems db)
+  let allItems = all_ (_gear_items db)
 
   runBeamSqlite conn $ runSelectReturningList $ select allItems
