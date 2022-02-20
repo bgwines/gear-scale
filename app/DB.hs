@@ -23,7 +23,6 @@ module DB
   , GearItem(..)
   , GearItemId(..)
   , GearKind(..)
-  , item
   ) where
 
 import Database.Beam
@@ -94,9 +93,6 @@ instance FromBackendRow Sqlite GearKind where
 ---------------
 -- GearItemT --
 ---------------
-
-item :: GearItem
-item = DB.GearItem "id123" "Item 123" True 8.0 Base "id456"
 
 data GearItemT f
     = GearItem
