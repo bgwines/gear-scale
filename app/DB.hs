@@ -7,6 +7,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE StandaloneDeriving #-}
 {-# LANGUAGE TypeFamilies #-}
+{-# LANGUAGE UndecidableInstances #-}
 
 module DB
   ( UserT
@@ -39,10 +40,16 @@ import Database.Beam
       DatabaseSettings,
       Table(..),
       TableEntity )
-import Database.Beam.Sqlite ( runBeamSqliteDebug )
+import Database.Beam.Backend.SQL
+    ( HasSqlValueSyntax(..)
+    , autoSqlValueSyntax
+    , FromBackendRow
+    , fromBackendRow
+    )
+import Database.Beam.Sqlite ( runBeamSqlite, Sqlite )
 import Database.SQLite.Simple ( open )
-import Data.Text (Text)
-import Data.Aeson ( ToJSON )
+import Data.Text (Text, unpack)
+import Data.Aeson ( ToJSON, FromJSON, toEncoding, genericToEncoding, defaultOptions )
 
 -----------
 -- UserT --
@@ -65,6 +72,23 @@ instance Table UserT where
    data PrimaryKey UserT f = UserId (Columnar f Text) deriving (Generic, Beamable)
    primaryKey = UserId . _userId
 
+--------------
+-- GearKind --
+--------------
+
+data GearKind = Base | Technical | Clothing | Electronic | Nutrition
+  deriving (Generic, Eq, Show, Read)
+
+instance HasSqlValueSyntax be String => HasSqlValueSyntax be GearKind where
+  sqlValueSyntax = autoSqlValueSyntax
+
+instance FromBackendRow Sqlite GearKind where
+  fromBackendRow = read . unpack <$> fromBackendRow
+
+instance FromJSON GearKind
+instance ToJSON GearKind where
+    toEncoding = genericToEncoding defaultOptions
+
 ---------------
 -- GearItemT --
 ---------------
@@ -75,6 +99,7 @@ data GearItemT f
     , _gearItemName          :: Columnar f Text
     , _gearItemIsPersonal    :: Columnar f Bool
     , _gearItemOz            :: Columnar f Double
+    , _gearItemKind          :: Columnar f GearKind
     , _gearItemCreatorUserId :: Columnar f Text }
     deriving Generic
 instance Beamable GearItemT
@@ -82,8 +107,12 @@ instance Beamable GearItemT
 type GearItem = GearItemT Identity
 deriving instance Show GearItem
 deriving instance Eq GearItem
-instance ToJSON GearItem
+instance ToJSON GearItem where
+  toEncoding = genericToEncoding defaultOptions
 
+instance FromJSON GearItem
+
+    -- No need to provide a parseJSON implementation
 type GearItemId = PrimaryKey GearItemT Identity
 
 instance Table GearItemT where
@@ -112,23 +141,23 @@ dbName = "gear_scale.db"
 putUser :: User -> IO ()
 putUser user = do
   conn <- open dbName
-  runBeamSqliteDebug putStrLn conn $ runInsert $ insert (_users db) $ insertValues [ user ]
+  runBeamSqlite conn $ runInsert $ insert (_users db) $ insertValues [ user ]
 
 getAllUsers :: IO [UserT Identity]
 getAllUsers = do
   conn <- open dbName
   let allUsers = all_ (_users db)
 
-  runBeamSqliteDebug putStrLn conn $ runSelectReturningList $ select allUsers
+  runBeamSqlite conn $ runSelectReturningList $ select allUsers
 
 putGearItem :: GearItem -> IO ()
-putGearItem user = do
-  conn <- open dbName
-  runBeamSqliteDebug putStrLn conn $ runInsert $ insert (_gearItems db) $ insertValues [ user ]
+putGearItem gearItem = do
+  conn <- open dbName -- TODO resource pool
+  runBeamSqlite conn $ runInsert $ insert (_gearItems db) $ insertValues [ gearItem ]
 
 getAllGearItems :: IO [GearItemT Identity]
 getAllGearItems = do
   conn <- open dbName
   let allItems = all_ (_gearItems db)
 
-  runBeamSqliteDebug putStrLn conn $ runSelectReturningList $ select allItems
+  runBeamSqlite conn $ runSelectReturningList $ select allItems

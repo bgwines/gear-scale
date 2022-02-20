@@ -19,13 +19,21 @@ import Servant
   , type (:>)
   , Get
   , JSON
+  , Post
   , Raw
+  , ReqBody
+  , Required
+  , Strict
   , QueryParam )
+import qualified Servant.API.ContentTypes
 import qualified DB
 import qualified Types
 
 type LimitedAPI
-    = "searchGearItems" :> QueryParam "q" T.Text :> Get '[JSON] (Types.Search DB.GearItem)
+    =    "putGearItem"     :> ReqBody '[JSON] DB.GearItem
+                           :> Post '[JSON] ()
+    :<|> "searchGearItems" :> QueryParam "q" T.Text
+                           :> Get '[JSON] [DB.GearItem]
 
 type FullAPI = LimitedAPI :<|> Raw
 

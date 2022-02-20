@@ -1,4 +1,4 @@
-{-# LANGUAGE TypeOperators #-}
+{-# LANGUAGE ExplicitNamespaces  #-}
 
 module Server
   ( runServer
@@ -14,7 +14,9 @@ import qualified ServerHandlers
 
 
 server :: Servant.Server ServerAPI.FullAPI
-server = (ServerHandlers.searchGearItems)
+server =
+    (    ServerHandlers.putGearItem
+    :<|> ServerHandlers.searchGearItems )
     :<|> Servant.serveDirectoryWebApp "static"
 
 app :: Network.Wai.Application
