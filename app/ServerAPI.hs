@@ -27,7 +27,6 @@ import Servant
   , QueryParam )
 import qualified Servant.API.ContentTypes
 import qualified DB
-import qualified Types
 
 type LimitedAPI
     =    "putGearItem"     :> ReqBody '[JSON] DB.GearItem

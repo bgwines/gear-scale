@@ -131,7 +131,6 @@ instance Table GearItemT where
 
 data Db f = Db
   { _gear_items :: f (TableEntity GearItemT)
-  , _gear_selections :: f (TableEntity GearSelectionT)
   }
   deriving (Generic, Database be)
 

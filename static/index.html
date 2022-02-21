@@ -11,7 +11,45 @@
   <h1>Gear Scale</h1>
   <img src="assets/sun-ribbon-2.jpeg" width="1000" alt="Sun Ribbon Arete">
   <br/>
-  body
   <script type="text/javascript" src="api.js"></script>
-  <script type="module" src="home.js"></script>
+
+  <h2>All Items</h2>
+  <p id="allGearItems"></p>
+
+  <script type="text/javascript">
+    getSearchGearItems("", (r) => {
+      items = "";
+      for (let i = 0; i < r.length; i++) {
+        items += JSON.stringify(r[i], null, 1);
+      }
+      document.getElementById("allGearItems").innerHTML = items;
+    }, (e) => {
+      console.log("onError e: " + e);
+    })
+  </script>
+
+  <h2>Create Item</h2>
+  <script type="text/javascript" src="home.js"></script>
+  <form action="#" onsubmit="return createGearItem(this)">
+    <label for="gearItemName">Item name:</label>
+    <input type="text" id="createGearItemForm_Name" name="gearItemName"><br>
+
+    <label for="gearItemIsPersonal">Is personal:</label>
+    <input type="checkbox" id="createGearItemForm_IsPersonal" name="gearItemIsPersonal"><br>
+
+    <label for="gearItemOz">Oz:</label>
+    <input type="text" id="createGearItemForm_Oz" name="gearItemOz"><br>
+
+    <label for="gearItemKind">Kind:</label>
+    <select id="createGearItemForm_Kind" name="gearItemKind">
+      <option value="Base">Base</option>
+      <option value="Technical">Technical</option>
+      <option value="Clothing">Clothing</option>
+      <option value="Electric">Electric</option>
+      <option value="Nutrition">Nutrition</option>
+    </select><br>
+
+    <input type="submit" value="Submit">
+  </form>
+
 </body>
