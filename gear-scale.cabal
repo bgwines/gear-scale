@@ -23,6 +23,27 @@ extra-source-files:
     CHANGELOG.md
     README.md
 
+
+executable tsdef
+    main-is: Main.hs
+    default-language: Haskell2010
+    hs-source-dirs:   tsdef
+                    , app
+    other-modules:
+        DB
+        ServerAPI
+    build-depends:    base
+                    , servant-js
+                    , text
+                    , aeson
+                    , servant
+                    , servant-server
+                    , beam-core
+                    , beam-migrate
+                    , beam-sqlite
+                    , sqlite-simple
+
+
 executable gear-scale
     main-is:          Main.hs
 
@@ -30,7 +51,6 @@ executable gear-scale
     other-modules:
         DB
         Ids
-        JSAPI
         Server
         ServerAPI
         ServerHandlers
@@ -41,7 +61,6 @@ executable gear-scale
                     , servant
                     , servant-server
                     , js-jquery
-                    , servant-js
                     , text
                     , time
                     , aeson
