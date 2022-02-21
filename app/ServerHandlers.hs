@@ -28,6 +28,7 @@ putGearItem clientGearItem = do
     , DB._gearitemIsPersonal    = DB._gearitemIsPersonal    clientGearItem
     , DB._gearitemOz            = DB._gearitemOz            clientGearItem
     , DB._gearitemKind          = DB._gearitemKind          clientGearItem
-    , DB._gearitemCreatorUserId = "Brett" }
+    , DB._gearitemCreatorUserId = DB._gearitemCreatorUserId clientGearItem
+    }
   liftIO $ DB.putGearItem gearItem
   return itemId

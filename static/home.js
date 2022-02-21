@@ -2,15 +2,18 @@
 createGearItem = function (form) {
   var name = document.getElementById("createGearItemForm_Name").value;
   var isPersonal = document.getElementById(
-    "createGearItemForm_IsPersonal").value;
+    "createGearItemForm_IsPersonal").checked;
   var oz = document.getElementById("createGearItemForm_Oz").value;
   var kind = document.getElementById("createGearItemForm_Kind").value;
 
   const payload = {
-    "name": name,
-    "isPersonal": isPersonal,
-    "oz": oz,
-    "kind": kind};
+    "_gearitemId": "",
+    "_gearitemName": name,
+    "_gearitemIsPersonal": !!(isPersonal),
+    "_gearitemOz": parseFloat(oz),
+    "_gearitemKind": kind,
+    "_gearitemCreatorUserId": "Brett"
+  };
 
   console.log("payload: " + payload);
 

@@ -1,7 +1,5 @@
 {-# LANGUAGE DataKinds #-}
-{-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE TypeOperators #-}
-{-# LANGUAGE OverloadedStrings #-}
 
 module ServerAPI
   ( LimitedAPI

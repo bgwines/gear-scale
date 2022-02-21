@@ -20,7 +20,7 @@
     getSearchGearItems("", (r) => {
       items = "";
       for (let i = 0; i < r.length; i++) {
-        items += JSON.stringify(r[i], null, 1);
+        items += JSON.stringify(r[i], null, 1) + "<br/>";
       }
       document.getElementById("allGearItems").innerHTML = items;
     }, (e) => {
@@ -45,7 +45,7 @@
       <option value="Base">Base</option>
       <option value="Technical">Technical</option>
       <option value="Clothing">Clothing</option>
-      <option value="Electric">Electric</option>
+      <option value="Electronic">Electronic</option>
       <option value="Nutrition">Nutrition</option>
     </select><br>
 
