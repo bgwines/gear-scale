@@ -1,4 +1,5 @@
 type GearKind = "Base" | "Technical" | "Clothing" | "Electronic" | "Nutrition";
+
 type GearItem = IGearItem;
 
 interface IGearItem {

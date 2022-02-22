@@ -1,12 +1,12 @@
 
-createGearItem = function (form) {
+createGearItem = function (form: HTMLElement) {
   var name = document.getElementById("createGearItemForm_Name").value;
   var isPersonal = document.getElementById(
     "createGearItemForm_IsPersonal").checked;
   var oz = document.getElementById("createGearItemForm_Oz").value;
   var kind = document.getElementById("createGearItemForm_Kind").value;
 
-  const payload = {
+  const payload: GearItem = {
     "itemId": "",
     "name": name,
     "isPersonal": !!(isPersonal),
