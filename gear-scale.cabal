@@ -68,6 +68,7 @@ executable gear-scale
                     , text
                     , time
                     , aeson
+                    , aeson-typescript
                     , directory
                     , mtl
                     , attoparsec

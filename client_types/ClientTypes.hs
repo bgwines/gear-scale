@@ -1,14 +1,24 @@
 {-# LANGUAGE DeriveAnyClass #-}
 {-# LANGUAGE DeriveGeneric #-}
+{-# LANGUAGE TemplateHaskell #-}
 
 module ClientTypes
-  ( GearItem(..)
-  , GearKind
+  ( GearKind(..)
+  , GearItem(..)
   ) where
 
+import Data.Aeson.TH
+import Data.Aeson.TypeScript.TH
+
+import Data.Proxy
 import qualified Data.Text
 import qualified GHC.Generics
-import Data.Aeson ( ToJSON, FromJSON, toEncoding, genericToEncoding, defaultOptions )
+--import Data.Aeson ( ToJSON, FromJSON, toEncoding, genericToEncoding, defaultOptions )
+
+data GearKind = Base | Technical | Clothing | Electronic | Nutrition
+  deriving (Eq, Show, Read)
+  --deriving (GHC.Generics.Generic, Eq, Show, Read, FromJSON, ToJSON)
+
 
 data GearItem = GearItem
     { itemId        :: Data.Text.Text
@@ -17,8 +27,12 @@ data GearItem = GearItem
     , oz            :: Double
     , kind          :: GearKind
     , creatorUserId :: Data.Text.Text }
-    deriving (GHC.Generics.Generic, Eq, Show, FromJSON, ToJSON)
+    deriving (Eq, Show)
+    --deriving (GHC.Generics.Generic, Eq, Show, FromJSON, ToJSON)
+
+--instance HasJSONOptions GearKind where getJSONOptions _ = defaultOptions
+--instance HasJSONOptions GearItem where getJSONOptions _ = defaultOptions
 
 
-data GearKind = Base | Technical | Clothing | Electronic | Nutrition
-  deriving (GHC.Generics.Generic, Eq, Show, Read, FromJSON, ToJSON)
+$(deriveJSON defaultOptions ''GearKind)
+$(deriveJSON defaultOptions ''GearItem)
