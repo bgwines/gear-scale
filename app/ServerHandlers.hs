@@ -8,27 +8,38 @@ module ServerHandlers
 import Control.Monad.IO.Class ( MonadIO(..) )
 import qualified Data.Text as T
 
+import qualified ClientTypes
 import qualified DB
 import qualified Ids
 
+serverGearItemToClient :: DB.GearItem -> ClientTypes.GearItem
+serverGearItemToClient item = ClientTypes.GearItem
+    { ClientTypes.itemId        = DB._gearitemId            item
+    , ClientTypes.name          = DB._gearitemName          item
+    , ClientTypes.isPersonal    = DB._gearitemIsPersonal    item
+    , ClientTypes.oz            = DB._gearitemOz            item
+    , ClientTypes.kind          = DB._gearitemKind          item
+    , ClientTypes.creatorUserId = DB._gearitemCreatorUserId item
+    }
 
-searchGearItems :: MonadIO m => Maybe T.Text -> m [DB.GearItem]
+
+searchGearItems :: MonadIO m => Maybe T.Text -> m [ClientTypes.GearItem]
 searchGearItems Nothing = return []
 searchGearItems (Just q) = do
   liftIO $ putStrLn $ "/searchGearItems?q=" ++ T.unpack q
-  liftIO DB.getAllGearItems
+  map serverGearItemToClient <$> liftIO DB.getAllGearItems
 
-putGearItem :: MonadIO m => DB.GearItem -> m T.Text
+putGearItem :: MonadIO m => ClientTypes.GearItem -> m T.Text
 putGearItem clientGearItem = do
   liftIO $ putStrLn $ "/putGearItem body=" ++ show clientGearItem
   itemId <- Ids.generate
   let gearItem = DB.GearItem {
       DB._gearitemId            = itemId
-    , DB._gearitemName          = DB._gearitemName          clientGearItem
-    , DB._gearitemIsPersonal    = DB._gearitemIsPersonal    clientGearItem
-    , DB._gearitemOz            = DB._gearitemOz            clientGearItem
-    , DB._gearitemKind          = DB._gearitemKind          clientGearItem
-    , DB._gearitemCreatorUserId = DB._gearitemCreatorUserId clientGearItem
+    , DB._gearitemName          = ClientTypes.name          clientGearItem
+    , DB._gearitemIsPersonal    = ClientTypes.isPersonal    clientGearItem
+    , DB._gearitemOz            = ClientTypes.oz            clientGearItem
+    , DB._gearitemKind          = ClientTypes.kind          clientGearItem
+    , DB._gearitemCreatorUserId = ClientTypes.creatorUserId clientGearItem
     }
   liftIO $ DB.putGearItem gearItem
   return itemId

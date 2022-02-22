@@ -7,12 +7,12 @@ createGearItem = function (form) {
   var kind = document.getElementById("createGearItemForm_Kind").value;
 
   const payload = {
-    "_gearitemId": "",
-    "_gearitemName": name,
-    "_gearitemIsPersonal": !!(isPersonal),
-    "_gearitemOz": parseFloat(oz),
-    "_gearitemKind": kind,
-    "_gearitemCreatorUserId": "Brett"
+    "itemId": "",
+    "name": name,
+    "isPersonal": !!(isPersonal),
+    "oz": parseFloat(oz),
+    "kind": kind,
+    "creatorUserId": "Brett"
   };
 
   console.log("payload: " + payload);

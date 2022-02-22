@@ -29,13 +29,16 @@ executable tsdef
     default-language: Haskell2010
     hs-source-dirs:   tsdef
                     , app
-    other-modules:
-        DB
-        ServerAPI
+                    , client_types
+    other-modules:    ServerAPI
+                    , ClientTypes
+                    , DB
+                    -- why is DB needed?
     build-depends:    base
                     , servant-js
                     , text
                     , aeson
+                    , aeson-typescript
                     , servant
                     , servant-server
                     , beam-core
@@ -49,6 +52,7 @@ executable gear-scale
 
     -- Modules included in this executable, other than Main.
     other-modules:
+        ClientTypes
         DB
         Ids
         Server
@@ -77,4 +81,5 @@ executable gear-scale
                     , beam-sqlite
                     , sqlite-simple
     hs-source-dirs:   app
+                    , client_types
     default-language: Haskell2010

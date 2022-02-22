@@ -24,13 +24,13 @@ import Servant
   , Strict
   , QueryParam )
 import qualified Servant.API.ContentTypes
-import qualified DB
+import qualified ClientTypes
 
 type LimitedAPI
-    =    "putGearItem"     :> ReqBody '[JSON] DB.GearItem
+    =    "putGearItem"     :> ReqBody '[JSON] ClientTypes.GearItem
                            :> Post '[JSON] T.Text
     :<|> "searchGearItems" :> QueryParam "q" T.Text
-                           :> Get '[JSON] [DB.GearItem]
+                           :> Get '[JSON] [ClientTypes.GearItem]
 
 type FullAPI = LimitedAPI :<|> Raw
 

@@ -17,7 +17,7 @@ module DB
   , GearItemT(..)
   , GearItem(..)
   , GearItemId(..)
-  , GearKind(..)
+  , ClientTypes.GearKind(..)
   ) where
 
 import Database.Beam
@@ -52,17 +52,16 @@ import Database.SQLite.Simple ( open )
 import Data.Text (Text, unpack)
 import Data.Aeson ( ToJSON, FromJSON, toEncoding, genericToEncoding, defaultOptions )
 
+import qualified ClientTypes
+
 --------------
 -- GearKind --
 --------------
 
-data GearKind = Base | Technical | Clothing | Electronic | Nutrition
-  deriving (Generic, Eq, Show, Read, FromJSON, ToJSON)
-
-instance HasSqlValueSyntax be String => HasSqlValueSyntax be GearKind where
+instance HasSqlValueSyntax be String => HasSqlValueSyntax be ClientTypes.GearKind where
   sqlValueSyntax = autoSqlValueSyntax
 
-instance FromBackendRow Sqlite GearKind where
+instance FromBackendRow Sqlite ClientTypes.GearKind where
   fromBackendRow = read . unpack <$> fromBackendRow
 
 ---------------
@@ -75,7 +74,7 @@ data GearItemT f
     , _gearitemName          :: Columnar f Text
     , _gearitemIsPersonal    :: Columnar f Bool
     , _gearitemOz            :: Columnar f Double
-    , _gearitemKind          :: Columnar f GearKind
+    , _gearitemKind          :: Columnar f ClientTypes.GearKind
     , _gearitemCreatorUserId :: Columnar f Text }
     deriving Generic
 instance Beamable GearItemT
