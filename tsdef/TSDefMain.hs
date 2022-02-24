@@ -21,11 +21,11 @@ $(deriveTypeScript defaultOptions ''ClientTypes.GearItem)
 
 main :: IO ()
 main = do
-  putStrLn "Writing API to `static/api.js`..."
-  writeJSForAPI ServerAPI.limitedApi vanillaJS "static/api.js"
+  putStrLn "Writing API to `src/backend_api.js`..."
+  writeJSForAPI ServerAPI.limitedApi vanillaJS "src/backend_api.js"
 
-  putStrLn "Writing TS types to `static/types.ts`..."
-  let decl1 = formatTSDeclarations (getTypeScriptDeclarations (Proxy :: Proxy ClientTypes.GearKind))
-  let decl2 = formatTSDeclarations (getTypeScriptDeclarations (Proxy :: Proxy ClientTypes.GearItem))
+  putStrLn "Writing TS types to `src/types.ts`..."
+  let decl1 = "export " ++ formatTSDeclarations (getTypeScriptDeclarations (Proxy :: Proxy ClientTypes.GearKind))
+  let decl2 = "export " ++ formatTSDeclarations (getTypeScriptDeclarations (Proxy :: Proxy ClientTypes.GearItem))
   let decls = decl1 ++ "\n\n" ++ decl2
-  writeFile "static/types.ts" decls
+  writeFile "src/types.ts" decls

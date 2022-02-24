@@ -17,7 +17,6 @@ server :: Servant.Server ServerAPI.FullAPI
 server =
     (    ServerHandlers.putGearItem
     :<|> ServerHandlers.searchGearItems )
-    :<|> Servant.serveDirectoryWebApp "static"
 
 app :: Network.Wai.Application
 app = Servant.serve ServerAPI.fullApi server

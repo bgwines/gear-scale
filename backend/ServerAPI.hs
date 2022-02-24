@@ -32,7 +32,7 @@ type LimitedAPI
     :<|> "searchGearItems" :> QueryParam "q" T.Text
                            :> Get '[JSON] [ClientTypes.GearItem]
 
-type FullAPI = LimitedAPI :<|> Raw
+type FullAPI = LimitedAPI
 
 limitedApi :: Proxy LimitedAPI
 limitedApi = Proxy
