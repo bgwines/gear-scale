@@ -2,6 +2,8 @@ import React from 'react';
 import sra from './sun-ribbon-2.jpeg';
 import * as BackendApi from './backend_api.js';
 import { GearItem } from './types';
+import { DataGrid } from '@mui/x-data-grid';
+import { createTheme } from '@mui/material/styles';
 import './App.css';
 
 class App extends React.Component<{}, { items: Array<GearItem> }> {
@@ -44,14 +46,38 @@ export interface GearItemsProps {
 
 class GearItems extends React.Component<GearItemsProps> {
   render() {
-    console.log("this.props.gearItems: " + this.props.gearItems);
-    return (
-      <ul>
-      {this.props.gearItems.map(item => (
-        <li key={item.itemId}>{item.name}</li>
-      ))}
-      </ul>
-    );
+    //const theme = createTheme({
+    //  components: {
+    //    MuiDataGrid: {
+    //      styleOverrides: {
+    //        root: {
+    //          backgroundColor: 'red',
+    //        },
+    //      },
+    //    },
+    //  },
+    //});
+    const columns: GridColDef[] = [
+      { field: "name", headerName: "Name", width: 150 },
+      { field: "isPersonal", headerName: "Personal", width: 150 },
+      { field: "oz", headerName: "Oz.", width: 150 },
+      { field: "kind", headerName: "Kind", width: 150 },
+    ];
+    return <div style={{ height: 300, width: '100%' }}>
+      <DataGrid
+        rows={this.props.gearItems.map(item => ({
+          "id": item.itemId,
+          "key": item.itemId,
+          "name": item.name,
+          "isPersonal": item.isPersonal,
+          "oz": item.oz,
+          "kind": item.kind
+        }))}
+        columns={columns}
+        pageSize={5}
+        rowsPerPageOptions={[5]}
+      />
+    </div>;
   }
 }
 
