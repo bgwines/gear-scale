@@ -33,6 +33,7 @@ class App extends React.Component<{}, { items: Array<GearItem> }> {
             Items:
           </p>
           <GearItems gearItems={this.state.items}/>
+          <GearItemsForm/>
         </header>
       </div>
     );
@@ -42,6 +43,86 @@ class App extends React.Component<{}, { items: Array<GearItem> }> {
 
 export interface GearItemsProps {
   gearItems: Array<GearItem>;
+}
+
+class GearItemsForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "",
+      isPersonal: true,
+      oz: "",
+      kind: "Base",
+    };
+
+    this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleIsPersonalChange = this.handleIsPersonalChange.bind(this);
+    this.handleOzChange = this.handleOzChange.bind(this);
+    this.handleKindChange = this.handleKindChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleNameChange(event) {
+    this.setState({name: event.target.value});
+    console.log("state: " + this.state);
+  }
+
+  handleIsPersonalChange(event) {
+    this.setState({isPersonal: event.target.value});
+    console.log("state: " + this.state);
+  }
+
+  handleOzChange(event) {
+    this.setState({oz: event.target.value});
+    console.log("state: " + this.state);
+  }
+
+  handleKindChange(event) {
+    this.setState({handle: event.target.value});
+    console.log("state: " + this.state);
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    const payload = {
+      itemId: "",
+      name: this.state.name,
+      isPersonal: this.state.isPersonal === "true",
+      oz: parseFloat(this.state.oz),
+      kind: this.state.kind,
+      creatorUserId: "",
+    }
+    BackendApi.postPutGearItem(payload, (r) => {
+      console.log("createGearItem success: " + r);
+    }, (e) => {
+      console.log("createGearItem error: " + e);
+    });
+    return false;
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Name:
+          <input type="text" defaultValue={this.state.name} onChange={this.handleNameChange} />
+        </label>
+        <label>
+          isPersonal:
+          <input type="checkbox" defaultValue={this.state.isPersonal} onChange={this.handleIsPersonalChange} />
+        </label>
+        <label>
+          oz:
+          <input type="text" defaultValue={this.state.oz} onChange={this.handleOzChange} />
+        </label>
+        <label>
+          kind:
+          <input type="text" defaultValue={this.state.kind} onChange={this.handleKindChange} />
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+    );
+  }
 }
 
 class GearItems extends React.Component<GearItemsProps> {

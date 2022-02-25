@@ -8,26 +8,6 @@
 </head>
 
 <body>
-  <h1>Gear Scale</h1>
-  <img src="assets/sun-ribbon-2.jpeg" width="1000" alt="Sun Ribbon Arete">
-  <br/>
-  <script type="text/javascript" src="api.js"></script>
-
-  <h2>All Items</h2>
-  <p id="allGearItems"></p>
-
-  <script type="text/javascript">
-    getSearchGearItems("", (r) => {
-      items = "";
-      for (let i = 0; i < r.length; i++) {
-        items += JSON.stringify(r[i], null, 1) + "<br/>";
-      }
-      document.getElementById("allGearItems").innerHTML = items;
-    }, (e) => {
-      console.log("onError e: " + e);
-    });
-  </script>
-
   <h2>Create Item</h2>
   <script type="text/javascript" src="home.ts"></script>
   <form action="#" onsubmit="return createGearItem(this)">
