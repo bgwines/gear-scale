@@ -58,6 +58,7 @@ executable gear-scale
         Server
         ServerAPI
         ServerHandlers
+        ImportExport
 
     -- LANGUAGE extensions used by modules in this package.
     -- other-extensions:

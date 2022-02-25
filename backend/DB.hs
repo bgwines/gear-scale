@@ -85,6 +85,7 @@ instance Beamable GearItemT
 
 type GearItem = GearItemT Identity
 deriving instance Show GearItem
+deriving instance Read GearItem
 deriving instance Eq GearItem
 instance ToJSON GearItem where
   toEncoding = genericToEncoding defaultOptions

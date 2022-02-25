@@ -1,5 +1,6 @@
 module Ids
   ( generate
+  , Id
   ) where
 
 import Control.Monad.IO.Class ( MonadIO(..) )

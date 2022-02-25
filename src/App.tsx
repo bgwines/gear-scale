@@ -21,7 +21,6 @@ class App extends React.Component<{}, { items: Array<GearItem> }> {
   }
 
   render() {
-    console.log("this.state.items: " + this.state.items);
     return (
       <div className="App">
         <header className="App-header">
@@ -32,8 +31,9 @@ class App extends React.Component<{}, { items: Array<GearItem> }> {
           <p>
             Items:
           </p>
-          <GearItems gearItems={this.state.items}/>
           <GearItemsForm/>
+          <br/><br/>
+          <GearItems gearItems={this.state.items}/>
         </header>
       </div>
     );
@@ -139,26 +139,38 @@ class GearItems extends React.Component<GearItemsProps> {
     //  },
     //});
     const columns: GridColDef[] = [
-      { field: "name", headerName: "Name", width: 150 },
+      { field: "name", headerName: "Name", width: 600 },
+      { field: "mass", headerName: "Mass", width: 150 },
       { field: "isPersonal", headerName: "Personal", width: 150 },
-      { field: "oz", headerName: "Oz.", width: 150 },
       { field: "kind", headerName: "Kind", width: 150 },
     ];
-    return <div style={{ height: 300, width: '100%' }}>
+    return <div style={{ height: 3000, width: '100%' }}>
       <DataGrid
         rows={this.props.gearItems.map(item => ({
           "id": item.itemId,
           "key": item.itemId,
           "name": item.name,
           "isPersonal": item.isPersonal,
-          "oz": item.oz,
+          "mass": this.displayMass(item.oz),
           "kind": item.kind
         }))}
         columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
+        pageSize={100}
+        rowsPerPageOptions={[4]}
       />
     </div>;
+  }
+
+  displayMass(totalOz: float): string {
+    const oz = totalOz % 16;
+    const lbs = Math.floor(totalOz / 16)
+    if (lbs == 0) {
+      return oz + "oz"
+    } else if (lbs == 1) {
+      return lbs + "lb " + oz + "oz"
+    } else {
+      return lbs + "lbs " + oz + "oz"
+    }
   }
 }
 
