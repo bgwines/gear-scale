@@ -62,6 +62,7 @@ importGearItems filename shouldClearDBFirst = do
     readGearItem :: String -> DB.GearItem
     readGearItem = read
 
+-- TODO: periodic backup
 exportGearItems :: String -> IO ()
 exportGearItems filename = do
   items <- DB.getAllGearItems

@@ -6,12 +6,14 @@ import { DataGrid } from '@mui/x-data-grid';
 import { createTheme } from '@mui/material/styles';
 import './App.css';
 
+// TODO: "Rebalance group gear" button
 class App extends React.Component<{}, { items: Array<GearItem> }> {
   constructor(props: any) {
     super(props);
     this.state = { items: [] };
   }
 
+  // TODO: fire the network request prior to mounting
   componentDidMount() {
     BackendApi.getSearchGearItems("", (r: any) => {
       this.setState({items: r});
@@ -45,6 +47,9 @@ export interface GearItemsProps {
   gearItems: Array<GearItem>;
 }
 
+// TODO: modal
+// TODO: buttons: 1/ Save & New 2/ Save 3/ Cancel
+// TODO: form validation
 class GearItemsForm extends React.Component {
   constructor(props) {
     super(props);
