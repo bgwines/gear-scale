@@ -14,6 +14,7 @@ module DB
   , db
   , putGearItem
   , getAllGearItems
+  , clearAllGearItems
   , GearItemT(..)
   , GearItem(..)
   , GearItemId(..)
@@ -23,8 +24,10 @@ module DB
 import Database.Beam
     ( Generic,
       Identity,
+      delete,
       insert,
       insertValues,
+      runDelete,
       runInsert,
       runSelectReturningOne,
       runSelectReturningList,
@@ -35,6 +38,7 @@ import Database.Beam
       lookup_,
       defaultDbSettings,
       (==.),
+      (/=.),
       Beamable,
       Columnar,
       Database,
@@ -145,7 +149,7 @@ dbName = "gear_scale.db"
 
 putGearItem :: GearItem -> IO ()
 putGearItem gearItem = do
-  conn <- open dbName -- TODO resource pool
+  conn <- open dbName
   runBeamSqlite conn $ runInsert $ insert (_gear_items db) $ insertValues [ gearItem ]
 
 getAllGearItems :: IO [GearItem]
@@ -158,3 +162,8 @@ getGearItemById gearItemId = do
   conn <- open dbName
   let matchingItems = lookup_ (_gear_items db) (GearItemId gearItemId)
   runBeamSqlite conn $ runSelectReturningOne matchingItems
+
+clearAllGearItems :: IO ()
+clearAllGearItems = do
+  conn <- open dbName
+  runBeamSqlite conn $ runDelete $ delete (_gear_items db) (\item -> _gearitemId item /=. "")
