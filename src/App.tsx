@@ -5,6 +5,7 @@ import { GearItem } from './types';
 import { DataGrid } from '@mui/x-data-grid';
 import { createTheme } from '@mui/material/styles';
 import './App.css';
+import { ThemeProvider } from '@emotion/react';
 
 // TODO: "Rebalance group gear" button
 class App extends React.Component<{}, { items: Array<GearItem> }> {
@@ -132,42 +133,42 @@ class GearItemsForm extends React.Component {
 
 class GearItems extends React.Component<GearItemsProps> {
   render() {
-    //const theme = createTheme({
-    //  components: {
-    //    MuiDataGrid: {
-    //      styleOverrides: {
-    //        root: {
-    //          backgroundColor: 'red',
-    //        },
-    //      },
-    //    },
-    //  },
-    //});
     const columns: GridColDef[] = [
       { field: "name", headerName: "Name", width: 600 },
       { field: "mass", headerName: "Mass", width: 150 },
       { field: "isPersonal", headerName: "Personal", width: 150 },
       { field: "kind", headerName: "Kind", width: 150 },
     ];
-    return <div style={{ height: 3000, width: '100%' }}>
-      <DataGrid
-        rows={this.props.gearItems.map(item => ({
-          "id": item.itemId,
-          "key": item.itemId,
-          "name": item.name,
-          "isPersonal": item.isPersonal,
-          "mass": this.displayMass(item.oz),
-          "kind": item.kind
-        }))}
-        columns={columns}
-        pageSize={100}
-        rowsPerPageOptions={[4]}
-      />
-    </div>;
+    const theme = createTheme({
+      palette: {
+        mode: "dark",
+      }
+    });
+    return <ThemeProvider theme={theme}>
+      <div style={{ height: 3000, width: '100%' }}>
+        <DataGrid
+          rows={this.props.gearItems.map(item => ({
+            "id": item.itemId,
+            "key": item.itemId,
+            "name": item.name,
+            "isPersonal": item.isPersonal,
+            "mass": this.displayMass(item.oz),
+            "kind": item.kind
+          }))}
+          columns={columns}
+          pageSize={100}
+          rowsPerPageOptions={[4]}
+        />
+      </div>
+    </ThemeProvider>;
   }
 
   displayMass(totalOz: float): string {
-    const oz = totalOz % 16;
+    var oz = Number(totalOz % 16).toFixed(1);
+    if (oz % 1 == 0) {
+      oz = Number(oz).toFixed(0);
+    }
+
     const lbs = Math.floor(totalOz / 16)
     if (lbs == 0) {
       return oz + "oz"
