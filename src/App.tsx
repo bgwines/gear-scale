@@ -21,17 +21,16 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
 
 // TODO: "Rebalance group gear" button
-class App extends React.Component<{}, { items: Array<GearItem>, isOpen: boolean, selectedValue: string }> {
+class App extends React.Component<{}, { items: Array<GearItem>, isOpen: boolean }> {
   constructor(props: any) {
     super(props);
     this.state = {
       items: [],
       isOpen: false,
-      selectedValue: emails[1],
     };
 
     this.handleClickOpen = this.handleClickOpen.bind(this);
-    this.handleClose= this.handleClose.bind(this);
+    this.handleClose = this.handleClose.bind(this);
   }
 
   handleClickOpen() {
@@ -39,7 +38,7 @@ class App extends React.Component<{}, { items: Array<GearItem>, isOpen: boolean,
   };
 
   handleClose(value: any) {
-    this.setState({isOpen: false, selectedValue: value});
+    this.setState({isOpen: false});
   };
 
   // TODO: fire the network request prior to mounting
@@ -61,15 +60,10 @@ class App extends React.Component<{}, { items: Array<GearItem>, isOpen: boolean,
             alt="Sun Ribbon Arete" />
 
           <div>
-            <Typography variant="subtitle1" component="div">
-              Selected: {this.state.selectedValue}
-            </Typography>
-            <br />
             <Button variant="outlined" onClick={this.handleClickOpen}>
               Open simple dialog
             </Button>
             <SimpleDialog
-              selectedValue={this.state.selectedValue}
               open={this.state.isOpen}
               onClose={this.handleClose}
             />
@@ -234,18 +228,14 @@ class GearItems extends React.Component<GearItemsProps> {
 const emails = ['username@gmail.com', 'user02@gmail.com'];
 
 function SimpleDialog(props: any) {
-  const { onClose, selectedValue, open } = props;
-
-  const handleClose = () => {
-    onClose(selectedValue);
-  };
+  const { onClose, open } = props;
 
   const handleListItemClick = (value: any) => {
     onClose(value);
   };
 
   return (
-    <Dialog onClose={handleClose} open={open}>
+    <Dialog onClose={onClose} open={open}>
       <DialogTitle>Set backup account</DialogTitle>
       <List sx={{ pt: 0 }}>
         {emails.map((email) => (
@@ -273,7 +263,6 @@ function SimpleDialog(props: any) {
 SimpleDialog.propTypes = {
   onClose: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
-  selectedValue: PropTypes.string.isRequired,
 };
 
 export default App;
