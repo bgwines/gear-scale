@@ -21,11 +21,26 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
 
 // TODO: "Rebalance group gear" button
-class App extends React.Component<{}, { items: Array<GearItem> }> {
+class App extends React.Component<{}, { items: Array<GearItem>, isOpen: boolean, selectedValue: string }> {
   constructor(props: any) {
     super(props);
-    this.state = { items: [] };
+    this.state = {
+      items: [],
+      isOpen: false,
+      selectedValue: emails[1],
+    };
+
+    this.handleClickOpen = this.handleClickOpen.bind(this);
+    this.handleClose= this.handleClose.bind(this);
   }
+
+  handleClickOpen() {
+    this.setState({isOpen: true});
+  };
+
+  handleClose(value: any) {
+    this.setState({isOpen: false, selectedValue: value});
+  };
 
   // TODO: fire the network request prior to mounting
   componentDidMount() {
@@ -44,6 +59,22 @@ class App extends React.Component<{}, { items: Array<GearItem> }> {
             className="Sun-Ribbon"
             width="1000px"
             alt="Sun Ribbon Arete" />
+
+          <div>
+            <Typography variant="subtitle1" component="div">
+              Selected: {this.state.selectedValue}
+            </Typography>
+            <br />
+            <Button variant="outlined" onClick={this.handleClickOpen}>
+              Open simple dialog
+            </Button>
+            <SimpleDialog
+              selectedValue={this.state.selectedValue}
+              open={this.state.isOpen}
+              onClose={this.handleClose}
+            />
+          </div>
+
           <p>
             Items:
           </p>
@@ -244,37 +275,5 @@ SimpleDialog.propTypes = {
   open: PropTypes.bool.isRequired,
   selectedValue: PropTypes.string.isRequired,
 };
-
-export function SimpleDialogDemo() {
-  const [open, setOpen] = React.useState(false);
-  const [selectedValue, setSelectedValue] = React.useState(emails[1]);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = (value: any) => {
-    setOpen(false);
-    setSelectedValue(value);
-  };
-
-  return (
-    <div>
-      <Typography variant="subtitle1" component="div">
-        Selected: {selectedValue}
-      </Typography>
-      <br />
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Open simple dialog
-      </Button>
-      <SimpleDialog
-        selectedValue={selectedValue}
-        open={open}
-        onClose={handleClose}
-      />
-    </div>
-  );
-}
-
 
 export default App;
