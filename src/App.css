@@ -1,3 +1,20 @@
+.MuiDataGrid-viewport,
+.MuiDataGrid-row,
+.MuiDataGrid-renderingZone {
+  max-height: none !important;
+}
+
+.MuiDataGrid-cell {
+  max-height: none !important;
+  overflow: auto;
+  white-space: initial !important;
+  line-height: 16px !important;
+  display: flex !important;
+  align-items: center;
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+}
+
 .App {
   text-align: center;
 }

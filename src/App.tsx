@@ -1,11 +1,24 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import sra from './sun-ribbon-2.jpeg';
 import * as BackendApi from './backend_api.js';
 import { GearItem, GearKind } from './types';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import Avatar from '@mui/material/Avatar';
+import { blue } from '@mui/material/colors';
+import Typography from '@mui/material/Typography';
+import ListItemText from '@mui/material/ListItemText';
+
 import { createTheme } from '@mui/material/styles';
 import './App.css';
 import { ThemeProvider } from '@emotion/react';
+import Button from '@mui/material/Button';
+import DialogTitle from '@mui/material/DialogTitle';
+import Dialog from '@mui/material/Dialog';
 
 // TODO: "Rebalance group gear" button
 class App extends React.Component<{}, { items: Array<GearItem> }> {
@@ -142,9 +155,9 @@ class GearItems extends React.Component<GearItemsProps> {
   render() {
     const columns: GridColDef[] = [
       { field: "name", headerName: "Name", width: 600 },
-      { field: "mass", headerName: "Mass", width: 150 },
-      { field: "isPersonal", headerName: "Personal", width: 150 },
-      { field: "kind", headerName: "Kind", width: 150 },
+      { field: "mass", headerName: "Mass", width: 100 },
+      { field: "isPersonal", headerName: "Personal", width: 100 },
+      { field: "kind", headerName: "Kind", width: 100 },
     ];
     const theme = createTheme({
       palette: {
@@ -152,7 +165,7 @@ class GearItems extends React.Component<GearItemsProps> {
       }
     });
     return <ThemeProvider theme={theme}>
-      <div style={{ height: 3000, width: '100%' }}>
+      <div style={{ height: 3000, width: 900 }}>
         <DataGrid
           rows={this.props.gearItems.map(item => ({
             "id": item.itemId,
@@ -185,6 +198,82 @@ class GearItems extends React.Component<GearItemsProps> {
       return lbs + "lbs " + oz + "oz"
     }
   }
+}
+
+const emails = ['username@gmail.com', 'user02@gmail.com'];
+
+function SimpleDialog(props: any) {
+  const { onClose, selectedValue, open } = props;
+
+  const handleClose = () => {
+    onClose(selectedValue);
+  };
+
+  const handleListItemClick = (value: any) => {
+    onClose(value);
+  };
+
+  return (
+    <Dialog onClose={handleClose} open={open}>
+      <DialogTitle>Set backup account</DialogTitle>
+      <List sx={{ pt: 0 }}>
+        {emails.map((email) => (
+          <ListItem button onClick={() => handleListItemClick(email)} key={email}>
+            <ListItemAvatar>
+              <Avatar sx={{ bgcolor: blue[100], color: blue[600] }}>
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText primary={email} />
+          </ListItem>
+        ))}
+
+        <ListItem autoFocus button onClick={() => handleListItemClick('addAccount')}>
+          <ListItemAvatar>
+            <Avatar>
+            </Avatar>
+          </ListItemAvatar>
+          <ListItemText primary="Add account" />
+        </ListItem>
+      </List>
+    </Dialog>
+  );
+}
+
+SimpleDialog.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
+  selectedValue: PropTypes.string.isRequired,
+};
+
+export function SimpleDialogDemo() {
+  const [open, setOpen] = React.useState(false);
+  const [selectedValue, setSelectedValue] = React.useState(emails[1]);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (value: any) => {
+    setOpen(false);
+    setSelectedValue(value);
+  };
+
+  return (
+    <div>
+      <Typography variant="subtitle1" component="div">
+        Selected: {selectedValue}
+      </Typography>
+      <br />
+      <Button variant="outlined" onClick={handleClickOpen}>
+        Open simple dialog
+      </Button>
+      <SimpleDialog
+        selectedValue={selectedValue}
+        open={open}
+        onClose={handleClose}
+      />
+    </div>
+  );
 }
 
 
