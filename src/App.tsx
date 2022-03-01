@@ -1,8 +1,8 @@
 import React from 'react';
 import sra from './sun-ribbon-2.jpeg';
 import * as BackendApi from './backend_api.js';
-import { GearItem } from './types';
-import { DataGrid } from '@mui/x-data-grid';
+import { GearItem, GearKind } from './types';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { createTheme } from '@mui/material/styles';
 import './App.css';
 import { ThemeProvider } from '@emotion/react';
@@ -48,16 +48,23 @@ export interface GearItemsProps {
   gearItems: Array<GearItem>;
 }
 
+interface GearItemsFormState {
+  name: string;
+  isPersonal: boolean;
+  oz: number;
+  kind: GearKind;
+}
+
 // TODO: modal
 // TODO: buttons: 1/ Save & New 2/ Save 3/ Cancel
 // TODO: form validation
-class GearItemsForm extends React.Component {
-  constructor(props) {
+class GearItemsForm extends React.Component<{}, GearItemsFormState> {
+  constructor(props: any) {
     super(props);
     this.state = {
       name: "",
       isPersonal: true,
-      oz: "",
+      oz: 0,
       kind: "Base",
     };
 
@@ -68,39 +75,39 @@ class GearItemsForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleNameChange(event) {
-    this.setState({name: event.target.value});
+  handleNameChange(e: React.ChangeEvent<HTMLInputElement>) {
+    this.setState({name: e.target.value});
     console.log("state: " + this.state);
   }
 
-  handleIsPersonalChange(event) {
-    this.setState({isPersonal: event.target.value});
+  handleIsPersonalChange(e: React.ChangeEvent<HTMLInputElement>) {
+    this.setState({isPersonal: e.target.value === "true"});
     console.log("state: " + this.state);
   }
 
-  handleOzChange(event) {
-    this.setState({oz: event.target.value});
+  handleOzChange(e: React.ChangeEvent<HTMLInputElement>) {
+    this.setState({oz: parseFloat(e.target.value)});
     console.log("state: " + this.state);
   }
 
-  handleKindChange(event) {
-    this.setState({handle: event.target.value});
+  handleKindChange(e: React.ChangeEvent<HTMLInputElement>) {
+    this.setState({kind: e.target.value as GearKind});
     console.log("state: " + this.state);
   }
 
-  handleSubmit(event) {
+  handleSubmit(event: React.SyntheticEvent) {
     event.preventDefault();
     const payload = {
       itemId: "",
       name: this.state.name,
-      isPersonal: this.state.isPersonal === "true",
-      oz: parseFloat(this.state.oz),
+      isPersonal: this.state.isPersonal,
+      oz: this.state.oz,
       kind: this.state.kind,
       creatorUserId: "",
     }
-    BackendApi.postPutGearItem(payload, (r) => {
+    BackendApi.postPutGearItem(payload, (r: any) => {
       console.log("createGearItem success: " + r);
-    }, (e) => {
+    }, (e: any) => {
       console.log("createGearItem error: " + e);
     });
     return false;
@@ -115,7 +122,7 @@ class GearItemsForm extends React.Component {
         </label>
         <label>
           isPersonal:
-          <input type="checkbox" defaultValue={this.state.isPersonal} onChange={this.handleIsPersonalChange} />
+        <input type="checkbox" defaultValue={this.state.isPersonal ? "a" : ""} onChange={this.handleIsPersonalChange} />
         </label>
         <label>
           oz:
@@ -163,10 +170,10 @@ class GearItems extends React.Component<GearItemsProps> {
     </ThemeProvider>;
   }
 
-  displayMass(totalOz: float): string {
-    var oz = Number(totalOz % 16).toFixed(1);
+  displayMass(totalOz: number): string {
+    var oz = Number(Number(totalOz % 16).toFixed(1))
     if (oz % 1 == 0) {
-      oz = Number(oz).toFixed(0);
+      oz = Number(oz.toFixed(0));
     }
 
     const lbs = Math.floor(totalOz / 16)
