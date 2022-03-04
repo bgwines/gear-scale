@@ -20,7 +20,14 @@ interface GearItemsFormState {
 // TODO: modal
 // TODO: buttons: 1/ Save & New 2/ Save 3/ Cancel
 // TODO: form validation
-export class AddGearItemsForm extends React.Component<{}, GearItemsFormState> {
+// TODO: buttons: 1/ Save & New 2/ Save 3/ Cancel
+// TODO: form validation
+// TODO: function components
+// TODO: Doom emacs tide
+// TODO: doom/modules/readme
+// TODO: I'm probably in a jsx mode when I should be in a tsx mode
+//       (which is maybe a minor mode?)
+class AddGearItemsForm extends React.Component<SimpleDialogProps, GearItemsFormState> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -77,25 +84,30 @@ export class AddGearItemsForm extends React.Component<{}, GearItemsFormState> {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Name:
-          <input type="text" defaultValue={this.state.name} onChange={this.handleNameChange} />
-        </label>
-        <label>
-          isPersonal:
-        <input type="checkbox" defaultValue={this.state.isPersonal ? "a" : ""} onChange={this.handleIsPersonalChange} />
-        </label>
-        <label>
-          oz:
-          <input type="text" defaultValue={this.state.oz} onChange={this.handleOzChange} />
-        </label>
-        <label>
-          kind:
-          <input type="text" defaultValue={this.state.kind} onChange={this.handleKindChange} />
-        ,    </label>
-        <input type="submit" value="Submit" />
-      </form>
+      <Dialog
+          onClose={this.props.onClose}
+          open={this.props.isOpen}>
+        <DialogTitle>Add gear item</DialogTitle>
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            Name:
+            <input type="text" defaultValue={this.state.name} onChange={this.handleNameChange} />
+          </label>
+          <label>
+            isPersonal:
+          <input type="checkbox" defaultValue={this.state.isPersonal ? "a" : ""} onChange={this.handleIsPersonalChange} />
+          </label>
+          <label>
+            oz:
+            <input type="text" defaultValue={this.state.oz} onChange={this.handleOzChange} />
+          </label>
+          <label>
+            kind:
+            <input type="text" defaultValue={this.state.kind} onChange={this.handleKindChange} />
+          ,    </label>
+          <input type="submit" value="Submit" />
+        </form>
+      </Dialog>
     );
   }
 }
@@ -105,31 +117,4 @@ interface SimpleDialogProps {
   onClose: any;
 }
 
-// TODO: buttons: 1/ Save & New 2/ Save 3/ Cancel
-// TODO: form validation
-// TODO: function components
-// TODO: Doom emacs tide
-// TODO: doom/modules/readme
-// TODO: I'm probably in a jsx mode when I should be in a tsx mode
-//       (which is maybe a minor mode?)
-export class SimpleDialog extends React.Component<SimpleDialogProps, {}> {
-  constructor(props: any) {
-    super(props);
-    this.handleListItemClick = this.handleListItemClick.bind(this);
-  }
-
-  handleListItemClick(value: any) {
-    this.props.onClose(value);
-  };
-
-  render() {
-    return (
-      <Dialog
-          onClose={this.props.onClose}
-          open={this.props.isOpen}>
-        <DialogTitle>Add gear item</DialogTitle>
-        <AddGearItemsForm/>
-      </Dialog>
-    );
-  }
-}
+export default AddGearItemsForm

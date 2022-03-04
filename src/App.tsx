@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './App.css';
 import sra from './sun-ribbon-2.jpeg';
 import * as BackendApi from './backend_api.js';
-import {AddGearItemsForm, SimpleDialog} from './AddGearItemsForm';
+import AddGearItemsForm from './AddGearItemsForm';
 import GearItemsTable from './GearItemsTable';
 import { GearItem, GearKind } from './types';
 
@@ -27,11 +27,12 @@ class App extends React.Component<{}, { items: Array<GearItem>, isOpen: boolean 
     this.setState({isOpen: true});
   };
 
-  handleClose(value: any) {
+  handleClose(_: any) {
     this.setState({isOpen: false});
   };
 
   // TODO: fire the network request prior to mounting
+  // TODO: delete item
   componentDidMount() {
     BackendApi.getSearchGearItems("", (r: any) => {
       this.setState({items: r});
@@ -54,7 +55,7 @@ class App extends React.Component<{}, { items: Array<GearItem>, isOpen: boolean 
             <Button variant="outlined" onClick={this.handleClickOpen}>
               Add gear item
             </Button>
-            <SimpleDialog
+            <AddGearItemsForm
               isOpen={this.state.isOpen}
               onClose={this.handleClose}
             />

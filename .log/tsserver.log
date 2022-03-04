@@ -873,3 +873,306 @@ Info 834  [19:50:08.291] Different program with same set of files
 Info 835  [19:50:10.551] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
 Info 836  [19:50:10.564] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 123 structureChanged: false structureIsReused:: Completely Elapsed: 12.134375095367432ms
 Info 837  [19:50:10.564] Different program with same set of files
+Info 838  [19:50:23.252] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 839  [19:50:23.321] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 124 structureChanged: true structureIsReused:: SafeModules Elapsed: 68.15991687774658ms
+Info 840  [19:50:23.321] Different program with same set of files
+Info 841  [19:50:23.914] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 842  [19:50:23.948] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 125 structureChanged: true structureIsReused:: SafeModules Elapsed: 33.604416847229004ms
+Info 843  [19:50:23.948] Different program with same set of files
+Info 844  [19:50:24.531] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 845  [19:50:24.565] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 126 structureChanged: true structureIsReused:: SafeModules Elapsed: 33.300540924072266ms
+Info 846  [19:50:24.565] Different program with same set of files
+Info 847  [19:50:24.842] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 848  [19:50:24.862] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 127 structureChanged: false structureIsReused:: Completely Elapsed: 18.649707794189453ms
+Info 849  [19:50:24.862] Different program with same set of files
+Info 850  [19:50:36.294] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 851  [19:50:36.315] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 128 structureChanged: false structureIsReused:: Completely Elapsed: 18.414416790008545ms
+Info 852  [19:50:36.315] Different program with same set of files
+Info 853  [19:50:36.435] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 854  [19:50:36.449] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 129 structureChanged: false structureIsReused:: Completely Elapsed: 14.375208377838135ms
+Info 855  [19:50:36.449] Different program with same set of files
+Info 856  [19:50:36.787] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 857  [19:50:36.801] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 130 structureChanged: false structureIsReused:: Completely Elapsed: 13.545291423797607ms
+Info 858  [19:50:36.801] Different program with same set of files
+Info 859  [19:50:36.928] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 860  [19:50:36.944] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 131 structureChanged: false structureIsReused:: Completely Elapsed: 15.96916675567627ms
+Info 861  [19:50:36.944] Different program with same set of files
+Info 862  [19:50:43.046] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 863  [19:50:43.069] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 132 structureChanged: false structureIsReused:: Completely Elapsed: 22.57483434677124ms
+Info 864  [19:50:43.069] Different program with same set of files
+Info 865  [19:50:45.871] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 866  [19:50:45.896] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 133 structureChanged: false structureIsReused:: Completely Elapsed: 24.7658748626709ms
+Info 867  [19:50:45.897] Different program with same set of files
+Info 868  [19:50:46.500] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 869  [19:50:46.508] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 134 structureChanged: false structureIsReused:: Completely Elapsed: 7.911375045776367ms
+Info 870  [19:50:46.508] Different program with same set of files
+Info 871  [19:50:48.094] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 872  [19:50:48.117] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 135 structureChanged: false structureIsReused:: Completely Elapsed: 21.97404193878174ms
+Info 873  [19:50:48.117] Different program with same set of files
+Info 874  [19:50:51.328] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 875  [19:50:51.350] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 136 structureChanged: false structureIsReused:: Completely Elapsed: 21.34000015258789ms
+Info 876  [19:50:51.350] Different program with same set of files
+Info 877  [19:50:57.801] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 878  [19:50:57.817] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 137 structureChanged: false structureIsReused:: Completely Elapsed: 15.88208293914795ms
+Info 879  [19:50:57.817] Different program with same set of files
+Info 880  [19:50:58.861] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 881  [19:50:58.870] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 138 structureChanged: false structureIsReused:: Completely Elapsed: 8.26550006866455ms
+Info 882  [19:50:58.870] Different program with same set of files
+Info 883  [19:51:00.256] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 884  [19:51:00.273] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 139 structureChanged: false structureIsReused:: Completely Elapsed: 17.36270809173584ms
+Info 885  [19:51:00.273] Different program with same set of files
+Info 886  [19:51:01.468] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 887  [19:51:01.488] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 140 structureChanged: false structureIsReused:: Completely Elapsed: 19.77579164505005ms
+Info 888  [19:51:01.488] Different program with same set of files
+Info 889  [19:51:02.083] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 890  [19:51:02.090] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 141 structureChanged: false structureIsReused:: Completely Elapsed: 6.5704169273376465ms
+Info 891  [19:51:02.090] Different program with same set of files
+Info 892  [19:51:03.806] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 893  [19:51:03.828] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 142 structureChanged: false structureIsReused:: Completely Elapsed: 21.747875213623047ms
+Info 894  [19:51:03.828] Different program with same set of files
+Info 895  [19:51:07.952] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 896  [19:51:07.971] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 143 structureChanged: false structureIsReused:: Completely Elapsed: 18.782415866851807ms
+Info 897  [19:51:07.971] Different program with same set of files
+Info 898  [19:51:11.664] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 899  [19:51:11.684] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 144 structureChanged: false structureIsReused:: Completely Elapsed: 20.42537498474121ms
+Info 900  [19:51:11.684] Different program with same set of files
+Info 901  [19:51:18.901] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 902  [19:51:18.922] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 145 structureChanged: false structureIsReused:: Completely Elapsed: 19.549291133880615ms
+Info 903  [19:51:18.922] Different program with same set of files
+Info 904  [19:51:20.401] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 905  [19:51:20.418] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 146 structureChanged: false structureIsReused:: Completely Elapsed: 16.91470766067505ms
+Info 906  [19:51:20.418] Different program with same set of files
+Info 907  [19:51:22.275] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 908  [19:51:22.296] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 147 structureChanged: false structureIsReused:: Completely Elapsed: 21.631916046142578ms
+Info 909  [19:51:22.297] Different program with same set of files
+Info 910  [19:51:22.869] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 911  [19:51:22.875] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 148 structureChanged: false structureIsReused:: Completely Elapsed: 5.805292129516602ms
+Info 912  [19:51:22.875] Different program with same set of files
+Info 913  [19:51:27.005] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 914  [19:51:27.025] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 149 structureChanged: false structureIsReused:: Completely Elapsed: 19.16829204559326ms
+Info 915  [19:51:27.025] Different program with same set of files
+Info 916  [19:51:27.948] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 917  [19:51:27.966] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 150 structureChanged: false structureIsReused:: Completely Elapsed: 18.36033296585083ms
+Info 918  [19:51:27.966] Different program with same set of files
+Info 919  [19:51:28.561] DirectoryWatcher:: Triggered with /users/brettwines/gear-scale/node_modules/.cache/babel-loader/e02b3525f426ff8f6621765231a6ce68.json :: WatchInfo: /users/brettwines/gear-scale/node_modules 1 undefined WatchType: node_modules for closed script infos and package.jsons affecting module specifier cache
+Info 920  [19:51:28.561] Elapsed:: 0.06862497329711914ms DirectoryWatcher:: Triggered with /users/brettwines/gear-scale/node_modules/.cache/babel-loader/e02b3525f426ff8f6621765231a6ce68.json :: WatchInfo: /users/brettwines/gear-scale/node_modules 1 undefined WatchType: node_modules for closed script infos and package.jsons affecting module specifier cache
+Info 921  [19:51:28.561] DirectoryWatcher:: Triggered with /Users/brettwines/gear-scale/node_modules/.cache/babel-loader/e02b3525f426ff8f6621765231a6ce68.json :: WatchInfo: /Users/brettwines/gear-scale/node_modules 1 undefined Project: /Users/brettwines/gear-scale/tsconfig.json WatchType: Failed Lookup Locations
+Info 922  [19:51:28.561] Elapsed:: 0.10150003433227539ms DirectoryWatcher:: Triggered with /Users/brettwines/gear-scale/node_modules/.cache/babel-loader/e02b3525f426ff8f6621765231a6ce68.json :: WatchInfo: /Users/brettwines/gear-scale/node_modules 1 undefined Project: /Users/brettwines/gear-scale/tsconfig.json WatchType: Failed Lookup Locations
+Info 923  [19:51:34.457] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 924  [19:51:34.480] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 151 structureChanged: false structureIsReused:: Completely Elapsed: 21.00166606903076ms
+Info 925  [19:51:34.480] Different program with same set of files
+Info 926  [19:51:39.741] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 927  [19:51:39.761] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 152 structureChanged: false structureIsReused:: Completely Elapsed: 19.913291931152344ms
+Info 928  [19:51:39.761] Different program with same set of files
+Info 929  [19:51:39.884] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 930  [19:51:39.891] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 153 structureChanged: false structureIsReused:: Completely Elapsed: 6.876874923706055ms
+Info 931  [19:51:39.891] Different program with same set of files
+Info 932  [19:51:40.520] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 933  [19:51:40.539] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 154 structureChanged: false structureIsReused:: Completely Elapsed: 18.822999954223633ms
+Info 934  [19:51:40.539] Different program with same set of files
+Info 935  [19:51:40.662] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 936  [19:51:40.668] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 155 structureChanged: false structureIsReused:: Completely Elapsed: 6.1212921142578125ms
+Info 937  [19:51:40.668] Different program with same set of files
+Info 938  [19:51:41.307] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 939  [19:51:41.314] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 156 structureChanged: false structureIsReused:: Completely Elapsed: 6.530040740966797ms
+Info 940  [19:51:41.314] Different program with same set of files
+Info 941  [19:51:41.882] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 942  [19:51:41.889] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 157 structureChanged: false structureIsReused:: Completely Elapsed: 6.744915962219238ms
+Info 943  [19:51:41.889] Different program with same set of files
+Info 944  [19:51:45.143] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 945  [19:51:45.160] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 158 structureChanged: false structureIsReused:: Completely Elapsed: 16.24545907974243ms
+Info 946  [19:51:45.160] Different program with same set of files
+Info 947  [19:51:48.283] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 948  [19:51:48.297] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 159 structureChanged: false structureIsReused:: Completely Elapsed: 13.86791706085205ms
+Info 949  [19:51:48.297] Different program with same set of files
+Info 950  [19:51:48.297] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 951  [19:51:48.308] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 160 structureChanged: false structureIsReused:: Completely Elapsed: 10.205957889556885ms
+Info 952  [19:51:48.308] Different program with same set of files
+Info 953  [19:51:48.685] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 954  [19:51:48.703] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 161 structureChanged: false structureIsReused:: Completely Elapsed: 17.97487497329712ms
+Info 955  [19:51:48.703] Different program with same set of files
+Info 956  [19:51:49.277] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 957  [19:51:49.283] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 162 structureChanged: false structureIsReused:: Completely Elapsed: 6.095874786376953ms
+Info 958  [19:51:49.283] Different program with same set of files
+Info 959  [19:51:51.582] DirectoryWatcher:: Triggered with /users/brettwines/gear-scale/node_modules/.cache/babel-loader/0b205667ec8ea8acf1121afc787f7705.json :: WatchInfo: /users/brettwines/gear-scale/node_modules 1 undefined WatchType: node_modules for closed script infos and package.jsons affecting module specifier cache
+Info 960  [19:51:51.582] Elapsed:: 0.06691694259643555ms DirectoryWatcher:: Triggered with /users/brettwines/gear-scale/node_modules/.cache/babel-loader/0b205667ec8ea8acf1121afc787f7705.json :: WatchInfo: /users/brettwines/gear-scale/node_modules 1 undefined WatchType: node_modules for closed script infos and package.jsons affecting module specifier cache
+Info 961  [19:51:51.582] DirectoryWatcher:: Triggered with /Users/brettwines/gear-scale/node_modules/.cache/babel-loader/0b205667ec8ea8acf1121afc787f7705.json :: WatchInfo: /Users/brettwines/gear-scale/node_modules 1 undefined Project: /Users/brettwines/gear-scale/tsconfig.json WatchType: Failed Lookup Locations
+Info 962  [19:51:51.582] Elapsed:: 0.09337472915649414ms DirectoryWatcher:: Triggered with /Users/brettwines/gear-scale/node_modules/.cache/babel-loader/0b205667ec8ea8acf1121afc787f7705.json :: WatchInfo: /Users/brettwines/gear-scale/node_modules 1 undefined Project: /Users/brettwines/gear-scale/tsconfig.json WatchType: Failed Lookup Locations
+Info 963  [19:51:54.241] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 964  [19:51:54.260] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 163 structureChanged: false structureIsReused:: Completely Elapsed: 18.428125381469727ms
+Info 965  [19:51:54.260] Different program with same set of files
+Info 966  [19:51:54.378] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 967  [19:51:54.384] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 164 structureChanged: false structureIsReused:: Completely Elapsed: 5.898167133331299ms
+Info 968  [19:51:54.384] Different program with same set of files
+Info 969  [19:51:54.970] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 970  [19:51:54.976] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 165 structureChanged: false structureIsReused:: Completely Elapsed: 6.67283296585083ms
+Info 971  [19:51:54.976] Different program with same set of files
+Info 972  [19:51:55.494] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 973  [19:51:55.501] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 166 structureChanged: false structureIsReused:: Completely Elapsed: 6.467875003814697ms
+Info 974  [19:51:55.501] Different program with same set of files
+Info 975  [19:51:58.754] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 976  [19:51:58.776] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 167 structureChanged: false structureIsReused:: Completely Elapsed: 21.170333862304688ms
+Info 977  [19:51:58.776] Different program with same set of files
+Info 978  [19:52:04.848] DirectoryWatcher:: Triggered with /users/brettwines/gear-scale/node_modules/.cache/babel-loader/74434e4eec6416846b2dca631926fdc5.json :: WatchInfo: /users/brettwines/gear-scale/node_modules 1 undefined WatchType: node_modules for closed script infos and package.jsons affecting module specifier cache
+Info 979  [19:52:04.848] Elapsed:: 0.015625ms DirectoryWatcher:: Triggered with /users/brettwines/gear-scale/node_modules/.cache/babel-loader/74434e4eec6416846b2dca631926fdc5.json :: WatchInfo: /users/brettwines/gear-scale/node_modules 1 undefined WatchType: node_modules for closed script infos and package.jsons affecting module specifier cache
+Info 980  [19:52:04.848] DirectoryWatcher:: Triggered with /Users/brettwines/gear-scale/node_modules/.cache/babel-loader/74434e4eec6416846b2dca631926fdc5.json :: WatchInfo: /Users/brettwines/gear-scale/node_modules 1 undefined Project: /Users/brettwines/gear-scale/tsconfig.json WatchType: Failed Lookup Locations
+Info 981  [19:52:04.848] Elapsed:: 0.015457630157470703ms DirectoryWatcher:: Triggered with /Users/brettwines/gear-scale/node_modules/.cache/babel-loader/74434e4eec6416846b2dca631926fdc5.json :: WatchInfo: /Users/brettwines/gear-scale/node_modules 1 undefined Project: /Users/brettwines/gear-scale/tsconfig.json WatchType: Failed Lookup Locations
+Info 982  [19:52:16.847] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 983  [19:52:16.869] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 168 structureChanged: false structureIsReused:: Completely Elapsed: 21.588417053222656ms
+Info 984  [19:52:16.869] Different program with same set of files
+Info 985  [19:52:17.413] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 986  [19:52:17.419] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 169 structureChanged: false structureIsReused:: Completely Elapsed: 6.05287504196167ms
+Info 987  [19:52:17.419] Different program with same set of files
+Info 988  [19:52:17.924] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 989  [19:52:17.937] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 170 structureChanged: false structureIsReused:: Completely Elapsed: 12.484750270843506ms
+Info 990  [19:52:17.937] Different program with same set of files
+Info 991  [19:52:19.427] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 992  [19:52:19.447] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 171 structureChanged: false structureIsReused:: Completely Elapsed: 19.652957916259766ms
+Info 993  [19:52:19.447] Different program with same set of files
+Info 994  [19:52:20.040] DirectoryWatcher:: Triggered with /users/brettwines/gear-scale/node_modules/.cache/babel-loader/7066daf1814610d32d1d61a70e1abd25.json :: WatchInfo: /users/brettwines/gear-scale/node_modules 1 undefined WatchType: node_modules for closed script infos and package.jsons affecting module specifier cache
+Info 995  [19:52:20.040] Elapsed:: 0.013374805450439453ms DirectoryWatcher:: Triggered with /users/brettwines/gear-scale/node_modules/.cache/babel-loader/7066daf1814610d32d1d61a70e1abd25.json :: WatchInfo: /users/brettwines/gear-scale/node_modules 1 undefined WatchType: node_modules for closed script infos and package.jsons affecting module specifier cache
+Info 996  [19:52:20.040] DirectoryWatcher:: Triggered with /Users/brettwines/gear-scale/node_modules/.cache/babel-loader/7066daf1814610d32d1d61a70e1abd25.json :: WatchInfo: /Users/brettwines/gear-scale/node_modules 1 undefined Project: /Users/brettwines/gear-scale/tsconfig.json WatchType: Failed Lookup Locations
+Info 997  [19:52:20.040] Elapsed:: 0.010916709899902344ms DirectoryWatcher:: Triggered with /Users/brettwines/gear-scale/node_modules/.cache/babel-loader/7066daf1814610d32d1d61a70e1abd25.json :: WatchInfo: /Users/brettwines/gear-scale/node_modules 1 undefined Project: /Users/brettwines/gear-scale/tsconfig.json WatchType: Failed Lookup Locations
+Info 998  [19:52:20.609] Format host information updated
+Info 999  [19:52:20.811] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 1000 [19:52:20.820] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 172 structureChanged: false structureIsReused:: Completely Elapsed: 8.021957874298096ms
+Info 1001 [19:52:20.820] Different program with same set of files
+Info 1002 [19:52:21.337] DirectoryWatcher:: Triggered with /users/brettwines/gear-scale/node_modules/.cache/babel-loader/773513c86a005d916ffd2ca24f1ebb55.json :: WatchInfo: /users/brettwines/gear-scale/node_modules 1 undefined WatchType: node_modules for closed script infos and package.jsons affecting module specifier cache
+Info 1003 [19:52:21.337] Elapsed:: 0.008084297180175781ms DirectoryWatcher:: Triggered with /users/brettwines/gear-scale/node_modules/.cache/babel-loader/773513c86a005d916ffd2ca24f1ebb55.json :: WatchInfo: /users/brettwines/gear-scale/node_modules 1 undefined WatchType: node_modules for closed script infos and package.jsons affecting module specifier cache
+Info 1004 [19:52:21.337] DirectoryWatcher:: Triggered with /Users/brettwines/gear-scale/node_modules/.cache/babel-loader/773513c86a005d916ffd2ca24f1ebb55.json :: WatchInfo: /Users/brettwines/gear-scale/node_modules 1 undefined Project: /Users/brettwines/gear-scale/tsconfig.json WatchType: Failed Lookup Locations
+Info 1005 [19:52:21.337] Elapsed:: 0.011333942413330078ms DirectoryWatcher:: Triggered with /Users/brettwines/gear-scale/node_modules/.cache/babel-loader/773513c86a005d916ffd2ca24f1ebb55.json :: WatchInfo: /Users/brettwines/gear-scale/node_modules 1 undefined Project: /Users/brettwines/gear-scale/tsconfig.json WatchType: Failed Lookup Locations
+Info 1006 [19:52:24.522] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 1007 [19:52:24.546] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 173 structureChanged: false structureIsReused:: Completely Elapsed: 22.929916381835938ms
+Info 1008 [19:52:24.546] Different program with same set of files
+Info 1009 [19:52:25.108] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 1010 [19:52:25.114] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 174 structureChanged: false structureIsReused:: Completely Elapsed: 6.278208255767822ms
+Info 1011 [19:52:25.114] Different program with same set of files
+Info 1012 [19:52:26.793] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 1013 [19:52:26.813] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 175 structureChanged: false structureIsReused:: Completely Elapsed: 19.421916961669922ms
+Info 1014 [19:52:26.813] Different program with same set of files
+Info 1015 [19:52:27.409] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 1016 [19:52:27.416] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 176 structureChanged: false structureIsReused:: Completely Elapsed: 6.495832920074463ms
+Info 1017 [19:52:27.416] Different program with same set of files
+Info 1018 [19:52:28.746] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 1019 [19:52:28.768] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 177 structureChanged: false structureIsReused:: Completely Elapsed: 21.760667324066162ms
+Info 1020 [19:52:28.768] Different program with same set of files
+Info 1021 [19:52:28.892] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 1022 [19:52:28.904] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 178 structureChanged: false structureIsReused:: Completely Elapsed: 12.151041984558105ms
+Info 1023 [19:52:28.904] Different program with same set of files
+Info 1024 [19:52:41.134] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 1025 [19:52:41.157] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 179 structureChanged: false structureIsReused:: Completely Elapsed: 22.236083030700684ms
+Info 1026 [19:52:41.157] Different program with same set of files
+Info 1027 [19:52:41.704] forEachExternalModuleToImportFrom autoImportProvider: 0.06524991989135742
+Info 1028 [19:52:41.846] DirectoryWatcher:: Triggered with /users/brettwines/gear-scale/node_modules/.cache/babel-loader/8b5aa98ad8a34e04aac3ad67abac6cc1.json :: WatchInfo: /users/brettwines/gear-scale/node_modules 1 undefined WatchType: node_modules for closed script infos and package.jsons affecting module specifier cache
+Info 1029 [19:52:41.846] Elapsed:: 0.08362483978271484ms DirectoryWatcher:: Triggered with /users/brettwines/gear-scale/node_modules/.cache/babel-loader/8b5aa98ad8a34e04aac3ad67abac6cc1.json :: WatchInfo: /users/brettwines/gear-scale/node_modules 1 undefined WatchType: node_modules for closed script infos and package.jsons affecting module specifier cache
+Info 1030 [19:52:41.846] DirectoryWatcher:: Triggered with /Users/brettwines/gear-scale/node_modules/.cache/babel-loader/8b5aa98ad8a34e04aac3ad67abac6cc1.json :: WatchInfo: /Users/brettwines/gear-scale/node_modules 1 undefined Project: /Users/brettwines/gear-scale/tsconfig.json WatchType: Failed Lookup Locations
+Info 1031 [19:52:41.846] Elapsed:: 0.10670804977416992ms DirectoryWatcher:: Triggered with /Users/brettwines/gear-scale/node_modules/.cache/babel-loader/8b5aa98ad8a34e04aac3ad67abac6cc1.json :: WatchInfo: /Users/brettwines/gear-scale/node_modules 1 undefined Project: /Users/brettwines/gear-scale/tsconfig.json WatchType: Failed Lookup Locations
+Info 1032 [19:52:41.910] DirectoryWatcher:: Triggered with /users/brettwines/gear-scale/node_modules/.cache/babel-loader/48fb86b48dd4b9ec4596d3c0300298da.json :: WatchInfo: /users/brettwines/gear-scale/node_modules 1 undefined WatchType: node_modules for closed script infos and package.jsons affecting module specifier cache
+Info 1033 [19:52:41.910] Elapsed:: 0.01491689682006836ms DirectoryWatcher:: Triggered with /users/brettwines/gear-scale/node_modules/.cache/babel-loader/48fb86b48dd4b9ec4596d3c0300298da.json :: WatchInfo: /users/brettwines/gear-scale/node_modules 1 undefined WatchType: node_modules for closed script infos and package.jsons affecting module specifier cache
+Info 1034 [19:52:41.910] DirectoryWatcher:: Triggered with /Users/brettwines/gear-scale/node_modules/.cache/babel-loader/48fb86b48dd4b9ec4596d3c0300298da.json :: WatchInfo: /Users/brettwines/gear-scale/node_modules 1 undefined Project: /Users/brettwines/gear-scale/tsconfig.json WatchType: Failed Lookup Locations
+Info 1035 [19:52:41.910] Elapsed:: 0.014957904815673828ms DirectoryWatcher:: Triggered with /Users/brettwines/gear-scale/node_modules/.cache/babel-loader/48fb86b48dd4b9ec4596d3c0300298da.json :: WatchInfo: /Users/brettwines/gear-scale/node_modules 1 undefined Project: /Users/brettwines/gear-scale/tsconfig.json WatchType: Failed Lookup Locations
+Info 1036 [19:53:09.321] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 1037 [19:53:09.350] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 180 structureChanged: false structureIsReused:: Completely Elapsed: 27.307916164398193ms
+Info 1038 [19:53:09.350] Different program with same set of files
+Info 1039 [19:53:11.381] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 1040 [19:53:11.403] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 181 structureChanged: false structureIsReused:: Completely Elapsed: 22.60620880126953ms
+Info 1041 [19:53:11.404] Different program with same set of files
+Info 1042 [19:53:11.526] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 1043 [19:53:11.535] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 182 structureChanged: false structureIsReused:: Completely Elapsed: 8.315707683563232ms
+Info 1044 [19:53:11.535] Different program with same set of files
+Info 1045 [19:53:12.205] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 1046 [19:53:12.212] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 183 structureChanged: false structureIsReused:: Completely Elapsed: 6.895124912261963ms
+Info 1047 [19:53:12.212] Different program with same set of files
+Info 1048 [19:53:13.833] DirectoryWatcher:: Triggered with /users/brettwines/gear-scale/node_modules/.cache/babel-loader/d5d30d26d74acf423c6b55799966e8f3.json :: WatchInfo: /users/brettwines/gear-scale/node_modules 1 undefined WatchType: node_modules for closed script infos and package.jsons affecting module specifier cache
+Info 1049 [19:53:13.833] Elapsed:: 0.018833160400390625ms DirectoryWatcher:: Triggered with /users/brettwines/gear-scale/node_modules/.cache/babel-loader/d5d30d26d74acf423c6b55799966e8f3.json :: WatchInfo: /users/brettwines/gear-scale/node_modules 1 undefined WatchType: node_modules for closed script infos and package.jsons affecting module specifier cache
+Info 1050 [19:53:13.833] DirectoryWatcher:: Triggered with /Users/brettwines/gear-scale/node_modules/.cache/babel-loader/d5d30d26d74acf423c6b55799966e8f3.json :: WatchInfo: /Users/brettwines/gear-scale/node_modules 1 undefined Project: /Users/brettwines/gear-scale/tsconfig.json WatchType: Failed Lookup Locations
+Info 1051 [19:53:13.833] Elapsed:: 0.01529073715209961ms DirectoryWatcher:: Triggered with /Users/brettwines/gear-scale/node_modules/.cache/babel-loader/d5d30d26d74acf423c6b55799966e8f3.json :: WatchInfo: /Users/brettwines/gear-scale/node_modules 1 undefined Project: /Users/brettwines/gear-scale/tsconfig.json WatchType: Failed Lookup Locations
+Info 1052 [19:53:29.287] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 1053 [19:53:29.307] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 184 structureChanged: false structureIsReused:: Completely Elapsed: 18.250583171844482ms
+Info 1054 [19:53:29.307] Different program with same set of files
+Info 1055 [19:53:29.310] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 1056 [19:53:29.322] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 185 structureChanged: false structureIsReused:: Completely Elapsed: 12.20787525177002ms
+Info 1057 [19:53:29.322] Different program with same set of files
+Info 1058 [19:53:30.071] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 1059 [19:53:30.094] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 186 structureChanged: false structureIsReused:: Completely Elapsed: 10.492749691009521ms
+Info 1060 [19:53:30.108] Different program with same set of files
+Info 1061 [19:53:30.610] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 1062 [19:53:30.616] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 187 structureChanged: false structureIsReused:: Completely Elapsed: 6.110416889190674ms
+Info 1063 [19:53:30.616] Different program with same set of files
+Info 1064 [19:53:31.197] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 1065 [19:53:31.204] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 188 structureChanged: false structureIsReused:: Completely Elapsed: 6.779375076293945ms
+Info 1066 [19:53:31.204] Different program with same set of files
+Info 1067 [19:53:41.961] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 1068 [19:53:41.981] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 189 structureChanged: false structureIsReused:: Completely Elapsed: 18.293875217437744ms
+Info 1069 [19:53:41.981] Different program with same set of files
+Info 1070 [19:53:41.982] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 1071 [19:53:41.993] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 190 structureChanged: false structureIsReused:: Completely Elapsed: 10.849666118621826ms
+Info 1072 [19:53:41.993] Different program with same set of files
+Info 1073 [19:53:44.737] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 1074 [19:53:44.756] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 191 structureChanged: false structureIsReused:: Completely Elapsed: 18.659584045410156ms
+Info 1075 [19:53:44.756] Different program with same set of files
+Info 1076 [19:53:48.728] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 1077 [19:53:48.735] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 192 structureChanged: false structureIsReused:: Completely Elapsed: 6.9287919998168945ms
+Info 1078 [19:53:48.735] Different program with same set of files
+Info 1079 [19:53:49.057] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 1080 [19:53:49.079] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 193 structureChanged: false structureIsReused:: Completely Elapsed: 21.17079210281372ms
+Info 1081 [19:53:49.079] Different program with same set of files
+Info 1082 [19:53:50.073] DirectoryWatcher:: Triggered with /users/brettwines/gear-scale/node_modules/.cache/babel-loader/46a6c43ea89ec217d0ed2c37f7715f23.json :: WatchInfo: /users/brettwines/gear-scale/node_modules 1 undefined WatchType: node_modules for closed script infos and package.jsons affecting module specifier cache
+Info 1083 [19:53:50.073] Elapsed:: 0.0861659049987793ms DirectoryWatcher:: Triggered with /users/brettwines/gear-scale/node_modules/.cache/babel-loader/46a6c43ea89ec217d0ed2c37f7715f23.json :: WatchInfo: /users/brettwines/gear-scale/node_modules 1 undefined WatchType: node_modules for closed script infos and package.jsons affecting module specifier cache
+Info 1084 [19:53:50.073] DirectoryWatcher:: Triggered with /Users/brettwines/gear-scale/node_modules/.cache/babel-loader/46a6c43ea89ec217d0ed2c37f7715f23.json :: WatchInfo: /Users/brettwines/gear-scale/node_modules 1 undefined Project: /Users/brettwines/gear-scale/tsconfig.json WatchType: Failed Lookup Locations
+Info 1085 [19:53:50.073] Elapsed:: 0.10404205322265625ms DirectoryWatcher:: Triggered with /Users/brettwines/gear-scale/node_modules/.cache/babel-loader/46a6c43ea89ec217d0ed2c37f7715f23.json :: WatchInfo: /Users/brettwines/gear-scale/node_modules 1 undefined Project: /Users/brettwines/gear-scale/tsconfig.json WatchType: Failed Lookup Locations
+Info 1086 [19:53:52.262] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 1087 [19:53:52.282] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 194 structureChanged: false structureIsReused:: Completely Elapsed: 12.994791030883789ms
+Info 1088 [19:53:52.282] Different program with same set of files
+Info 1089 [19:53:53.074] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 1090 [19:53:53.080] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 195 structureChanged: false structureIsReused:: Completely Elapsed: 6.6711249351501465ms
+Info 1091 [19:53:53.080] Different program with same set of files
+Info 1092 [19:54:08.036] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 1093 [19:54:08.058] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 196 structureChanged: false structureIsReused:: Completely Elapsed: 21.539708137512207ms
+Info 1094 [19:54:08.058] Different program with same set of files
+Info 1095 [19:54:09.692] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 1096 [19:54:09.712] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 197 structureChanged: false structureIsReused:: Completely Elapsed: 19.350208282470703ms
+Info 1097 [19:54:09.712] Different program with same set of files
+Info 1098 [19:54:11.073] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 1099 [19:54:11.090] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 198 structureChanged: false structureIsReused:: Completely Elapsed: 16.500290870666504ms
+Info 1100 [19:54:11.090] Different program with same set of files
+Info 1101 [19:54:11.092] getCompletionData: Get current token: 0.02550029754638672
+Info 1102 [19:54:11.092] getCompletionData: Is inside comment: 0.036374568939208984
+Info 1103 [19:54:11.092] Returning an empty list because completion was inside a regular comment or plain text part of a JsDoc comment.
+Info 1104 [19:54:11.637] getCompletionData: Get current token: 0.005000114440917969
+Info 1105 [19:54:11.637] getCompletionData: Is inside comment: 0.00704193115234375
+Info 1106 [19:54:11.637] Returning an empty list because completion was inside a regular comment or plain text part of a JsDoc comment.
+Info 1107 [19:54:11.637] getCompletionData: Get current token: 0.0017080307006835938
+Info 1108 [19:54:11.637] getCompletionData: Is inside comment: 0.0054168701171875
+Info 1109 [19:54:11.637] Returning an empty list because completion was inside a regular comment or plain text part of a JsDoc comment.
+Info 1110 [19:54:11.637] getCompletionData: Get current token: 0.001708984375
+Info 1111 [19:54:11.637] getCompletionData: Is inside comment: 0.004874706268310547
+Info 1112 [19:54:11.637] Returning an empty list because completion was inside a regular comment or plain text part of a JsDoc comment.
+Info 1113 [19:54:11.637] getCompletionData: Get current token: 0.0017080307006835938
+Info 1114 [19:54:11.637] getCompletionData: Is inside comment: 0.004917144775390625
+Info 1115 [19:54:11.637] Returning an empty list because completion was inside a regular comment or plain text part of a JsDoc comment.
+Info 1116 [19:54:12.280] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 1117 [19:54:12.299] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 199 structureChanged: false structureIsReused:: Completely Elapsed: 18.355791091918945ms
+Info 1118 [19:54:12.299] Different program with same set of files
+Info 1119 [19:54:12.849] Starting updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json
+Info 1120 [19:54:12.856] Finishing updateGraphWorker: Project: /Users/brettwines/gear-scale/tsconfig.json Version: 200 structureChanged: false structureIsReused:: Completely Elapsed: 6.163750171661377ms
+Info 1121 [19:54:12.856] Different program with same set of files
+Info 1122 [19:54:13.363] getCompletionData: Get current token: 0.003916263580322266
+Info 1123 [19:54:13.363] getCompletionData: Is inside comment: 0.007999897003173828
+Info 1124 [19:54:13.363] Returning an empty list because completion was inside a regular comment or plain text part of a JsDoc comment.
+Info 1125 [19:54:13.363] getCompletionData: Get current token: 0.0018749237060546875
+Info 1126 [19:54:13.363] getCompletionData: Is inside comment: 0.005750179290771484
+Info 1127 [19:54:13.363] Returning an empty list because completion was inside a regular comment or plain text part of a JsDoc comment.
+Info 1128 [19:54:13.363] getCompletionData: Get current token: 0.0018749237060546875
+Info 1129 [19:54:13.363] getCompletionData: Is inside comment: 0.005417346954345703
+Info 1130 [19:54:13.363] Returning an empty list because completion was inside a regular comment or plain text part of a JsDoc comment.
+Info 1131 [19:54:13.363] getCompletionData: Get current token: 0.0018329620361328125
+Info 1132 [19:54:13.363] getCompletionData: Is inside comment: 0.005667209625244141
+Info 1133 [19:54:13.363] Returning an empty list because completion was inside a regular comment or plain text part of a JsDoc comment.
+Info 1134 [19:54:13.363] getCompletionData: Get current token: 0.0019168853759765625
+Info 1135 [19:54:13.363] getCompletionData: Is inside comment: 0.005457878112792969
+Info 1136 [19:54:13.363] Returning an empty list because completion was inside a regular comment or plain text part of a JsDoc comment.
+Info 1137 [19:54:13.467] DirectoryWatcher:: Triggered with /users/brettwines/gear-scale/node_modules/.cache/babel-loader/8b65093a20d4cfcf33cd5148982ea90c.json :: WatchInfo: /users/brettwines/gear-scale/node_modules 1 undefined WatchType: node_modules for closed script infos and package.jsons affecting module specifier cache
+Info 1138 [19:54:13.467] Elapsed:: 0.08008289337158203ms DirectoryWatcher:: Triggered with /users/brettwines/gear-scale/node_modules/.cache/babel-loader/8b65093a20d4cfcf33cd5148982ea90c.json :: WatchInfo: /users/brettwines/gear-scale/node_modules 1 undefined WatchType: node_modules for closed script infos and package.jsons affecting module specifier cache
+Info 1139 [19:54:13.467] DirectoryWatcher:: Triggered with /Users/brettwines/gear-scale/node_modules/.cache/babel-loader/8b65093a20d4cfcf33cd5148982ea90c.json :: WatchInfo: /Users/brettwines/gear-scale/node_modules 1 undefined Project: /Users/brettwines/gear-scale/tsconfig.json WatchType: Failed Lookup Locations
+Info 1140 [19:54:13.467] Elapsed:: 0.11545896530151367ms DirectoryWatcher:: Triggered with /Users/brettwines/gear-scale/node_modules/.cache/babel-loader/8b65093a20d4cfcf33cd5148982ea90c.json :: WatchInfo: /Users/brettwines/gear-scale/node_modules 1 undefined Project: /Users/brettwines/gear-scale/tsconfig.json WatchType: Failed Lookup Locations
