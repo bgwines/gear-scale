@@ -49,12 +49,13 @@ class App extends React.Component<{}, { items: Array<GearItem>, isOpen: boolean 
             width="1000px"
             alt="Sun Ribbon Arete" />
 
+          <br/>
           <div>
             <Button variant="outlined" onClick={this.handleClickOpen}>
-              Open simple dialog
+              Add gear item
             </Button>
             <SimpleDialog
-              open={this.state.isOpen}
+              isOpen={this.state.isOpen}
               onClose={this.handleClose}
             />
           </div>
@@ -62,8 +63,6 @@ class App extends React.Component<{}, { items: Array<GearItem>, isOpen: boolean 
           <p>
             Items:
           </p>
-          <AddGearItemsForm/>
-          <br/><br/>
           <GearItemsTable gearItems={this.state.items}/>
         </header>
       </div>
