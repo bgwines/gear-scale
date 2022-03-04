@@ -5,7 +5,13 @@ import * as BackendApi from './backend_api.js';
 
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import InputAdornment from '@mui/material/InputAdornment';
+import MenuItem from '@mui/material/MenuItem';
+import TextField from '@mui/material/TextField';
 
 import { GearItem, GearKind } from './types';
 
@@ -33,7 +39,7 @@ class AddGearItemsForm extends React.Component<SimpleDialogProps, GearItemsFormS
     this.state = {
       name: "",
       isPersonal: true,
-      oz: 0,
+      oz: -1,
       kind: "Base",
     };
 
@@ -42,26 +48,28 @@ class AddGearItemsForm extends React.Component<SimpleDialogProps, GearItemsFormS
     this.handleOzChange = this.handleOzChange.bind(this);
     this.handleKindChange = this.handleKindChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmitAndClose = this.handleSubmitAndClose.bind(this);
   }
 
   handleNameChange(e: React.ChangeEvent<HTMLInputElement>) {
     this.setState({name: e.target.value});
-    console.log("state: " + this.state);
   }
 
   handleIsPersonalChange(e: React.ChangeEvent<HTMLInputElement>) {
     this.setState({isPersonal: e.target.value === "true"});
-    console.log("state: " + this.state);
   }
 
   handleOzChange(e: React.ChangeEvent<HTMLInputElement>) {
     this.setState({oz: parseFloat(e.target.value)});
-    console.log("state: " + this.state);
   }
 
   handleKindChange(e: React.ChangeEvent<HTMLInputElement>) {
     this.setState({kind: e.target.value as GearKind});
-    console.log("state: " + this.state);
+  }
+
+  handleSubmitAndClose(event: React.SyntheticEvent) {
+    this.handleSubmit(event);
+    this.props.onClose();
   }
 
   handleSubmit(event: React.SyntheticEvent) {
@@ -83,30 +91,68 @@ class AddGearItemsForm extends React.Component<SimpleDialogProps, GearItemsFormS
   }
 
   render() {
+    // TODO: reference GearKind
+    const kinds = ["Base", "Technical", "Clothing", "Electronic", "Nutrition"];
     return (
-      <Dialog
-          onClose={this.props.onClose}
-          open={this.props.isOpen}>
+      <Dialog onClose={this.props.onClose} open={this.props.isOpen}>
         <DialogTitle>Add gear item</DialogTitle>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Name:
-            <input type="text" defaultValue={this.state.name} onChange={this.handleNameChange} />
-          </label>
-          <label>
-            isPersonal:
-          <input type="checkbox" defaultValue={this.state.isPersonal ? "a" : ""} onChange={this.handleIsPersonalChange} />
-          </label>
-          <label>
-            oz:
-            <input type="text" defaultValue={this.state.oz} onChange={this.handleOzChange} />
-          </label>
-          <label>
-            kind:
-            <input type="text" defaultValue={this.state.kind} onChange={this.handleKindChange} />
-          ,    </label>
-          <input type="submit" value="Submit" />
-        </form>
+        <DialogContent>
+        <DialogContentText>
+        This is the dialog where you can enter a new gear item
+        </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="Item name"
+            fullWidth
+            variant="standard"
+            value={this.state.name}
+            onChange={this.handleNameChange}
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            id="isPersonal"
+            label="Is personal"
+            variant="standard"
+            value={this.state.isPersonal}
+            onChange={this.handleIsPersonalChange}
+          /><br/>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="oz"
+            label="Mass"
+            variant="standard"
+            InputProps={{
+              endAdornment: <InputAdornment position="end">oz</InputAdornment>
+            }}
+            value={this.state.oz === -1 ? "" : this.state.oz}
+            onChange={this.handleOzChange}
+          /><br/>
+          <TextField
+            autoFocus
+            select
+            margin="dense"
+            id="kind"
+            label="kind"
+            variant="standard"
+            value={this.state.kind}
+            onChange={this.handleKindChange}
+          >
+          {kinds.map((kind) => (
+            <MenuItem key={kind} value={kind}>
+              {kind}
+            </MenuItem>
+          ))}
+          </TextField>
+        <DialogActions>
+          <Button onClick={this.handleSubmit}>Save & New</Button>
+          <Button onClick={this.handleSubmitAndClose}>Save</Button>
+          <Button onClick={this.props.onClose}>Cancel</Button>
+        </DialogActions>
+        </DialogContent>
       </Dialog>
     );
   }
@@ -117,4 +163,4 @@ interface SimpleDialogProps {
   onClose: any;
 }
 
-export default AddGearItemsForm
+export default AddGearItemsForm;

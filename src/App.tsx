@@ -41,6 +41,7 @@ class App extends React.Component<{}, { items: Array<GearItem>, isOpen: boolean 
     });
   }
 
+  // TODO: [+]
   render() {
     return (
       <div className="App">
@@ -53,7 +54,7 @@ class App extends React.Component<{}, { items: Array<GearItem>, isOpen: boolean 
           <br/>
           <div>
             <Button variant="outlined" onClick={this.handleClickOpen}>
-              Add gear item
+              Add gear item [+]
             </Button>
             <AddGearItemsForm
               isOpen={this.state.isOpen}
