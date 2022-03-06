@@ -37,7 +37,6 @@ export default function App(_: any) {
 
   React.useEffect(() => {
     BackendApi.getSearchGearItems("", (r: any) => {
-      console.log("setting items");
       setItems(r);
     }, (e: any) => {
       console.log("error " + e);

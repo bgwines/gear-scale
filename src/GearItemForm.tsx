@@ -41,47 +41,38 @@ interface Props {
 // TODO: I'm probably in a jsx mode when I should be in a tsx mode
 //       (which is maybe a minor mode?)
 export default function GearItemForm(props: Props) {
-  const setName = (value: string) => {
+  const editFormState = (edit: Function) => {
     var newGearItem = {
       ...props.gearItem
     };
-    newGearItem.name = value;
+    edit(newGearItem);
     props.editFormState({
       isOpen: props.isOpen,
       gearItem: newGearItem
+    });
+  }
+
+  const setName = (value: string) => {
+    editFormState((newGearItem: GearItem) => {
+      newGearItem.name = value;
     });
   }
 
   const setIsPersonal = (value: boolean) => {
-    var newGearItem = {
-      ...props.gearItem
-    };
-    newGearItem.isPersonal = value;
-    props.editFormState({
-      isOpen: props.isOpen,
-      gearItem: newGearItem
+    editFormState((newGearItem: GearItem) => {
+      newGearItem.isPersonal = value;
     });
   }
 
   const setOz = (value: number) => {
-    var newGearItem = {
-      ...props.gearItem
-    };
-    newGearItem.oz = value;
-    props.editFormState({
-      isOpen: props.isOpen,
-      gearItem: newGearItem
+    editFormState((newGearItem: GearItem) => {
+      newGearItem.oz = value;
     });
   }
 
   const setKind = (value: GearKind) => {
-    var newGearItem = {
-      ...props.gearItem
-    };
-    newGearItem.kind = value;
-    props.editFormState({
-      isOpen: props.isOpen,
-      gearItem: newGearItem
+    editFormState((newGearItem: GearItem) => {
+      newGearItem.kind = value;
     });
   }
 
