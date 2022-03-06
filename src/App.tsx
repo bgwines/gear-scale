@@ -3,9 +3,9 @@ import React, { useCallback, useEffect, useState } from 'react';
 import './App.css';
 import sra from './sun-ribbon-2.jpeg';
 import * as BackendApi from './backend_api.js';
-import AddGearItemsForm from './AddGearItemsForm';
+import GearItemForm from './GearItemForm';
 import GearItemsTable from './GearItemsTable';
-//import { GearItem, GearKind } from './types';
+import { GearItem, GearKind } from './types';
 
 import Button from '@mui/material/Button';
 
@@ -14,7 +14,10 @@ import Button from '@mui/material/Button';
 // TODO: delete item
 export default function App(_: any) {
   const [items, setItems] = useState([]);
-  const [isOpen, setIsOpen] = useState(false);
+  const [gearItemFormStatus, setGearItemFormStatus] = useState({
+    isOpen: false,
+    itemForEditing: undefined
+  });
 
   React.useEffect(() => {
     BackendApi.getSearchGearItems("", (r: any) => {
@@ -26,7 +29,10 @@ export default function App(_: any) {
 
   const plusFunction = useCallback((event) => {
     if (event.keyCode === 187) {
-      setIsOpen(true);
+      setGearItemFormStatus({
+        isOpen: true,
+        itemForEditing: undefined,
+      });
     }
   }, []);
 
@@ -35,7 +41,21 @@ export default function App(_: any) {
     return () => { document.removeEventListener("keydown", plusFunction); };
   }, [plusFunction]);
 
+  const editItem = (itemId: string) => {
+    const f = (i: GearItem): boolean => {
+      return i.itemId === itemId;
+    };
+
+    const itemForEditing = items.find(f);
+    setGearItemFormStatus({
+      isOpen: true,
+      itemForEditing: itemForEditing,
+    });
+  };
+
   // TODO: [+]
+  console.log("gearItemFormStatus.itemForEditing:" + gearItemFormStatus.itemForEditing);
+  console.log("gearItemFormStatus.isOpen:" + gearItemFormStatus.isOpen);
   return (
     <div className="App">
       <header className="App-header">
@@ -45,18 +65,23 @@ export default function App(_: any) {
           alt="Sun Ribbon Arete" />
        <br/>
         <div>
-          <Button variant="outlined" onClick={() => setIsOpen(true)}>
+          <Button variant="outlined" onClick={() => setGearItemFormStatus({
+              isOpen: true,
+              itemForEditing: undefined})}>
             Add gear item [+]
           </Button>
-          <AddGearItemsForm
-            isOpen={isOpen}
-            onClose={() => setIsOpen(false)}
+          <GearItemForm
+            isOpen={gearItemFormStatus.isOpen}
+            onClose={() => setGearItemFormStatus({
+              isOpen: false,
+              itemForEditing: undefined})}
+            initialState={gearItemFormStatus.itemForEditing}
           />
         </div>
        <p>
           Items:
         </p>
-        <GearItemsTable gearItems={items}/>
+      <GearItemsTable gearItems={items} editItem={editItem}/>
       </header>
     </div>
   );

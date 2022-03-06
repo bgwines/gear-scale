@@ -4,13 +4,15 @@ import PropTypes from 'prop-types';
 import './App.css';
 import { GearItem, GearKind } from './types';
 
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import Button from '@mui/material/Button';
+import { DataGrid, GridColDef, GridApi, GridRenderCellParams } from '@mui/x-data-grid';
 import { ThemeProvider } from '@emotion/react';
 import { createTheme } from '@mui/material/styles';
 
 
 export interface GearItemsProps {
   gearItems: Array<GearItem>;
+  editItem: any;
 }
 
 class GearItemsTable extends React.Component<GearItemsProps> {
@@ -20,6 +22,15 @@ class GearItemsTable extends React.Component<GearItemsProps> {
       { field: "mass", headerName: "Mass", width: 100 },
       { field: "isPersonal", headerName: "Personal", width: 100 },
       { field: "kind", headerName: "Kind", width: 100 },
+      { field: "edit", headerName: "Edit", width: 100,
+        sortable: false, renderCell: (params: GridRenderCellParams) => {
+          const onClick = () => {
+            const itemId = params.row.id;
+            this.props.editItem(itemId);
+          };
+          return <Button variant="outlined" onClick={onClick}>Edit</Button>;
+        }
+      },
     ];
     const theme = createTheme({
       palette: {
@@ -27,7 +38,7 @@ class GearItemsTable extends React.Component<GearItemsProps> {
       }
     });
     return <ThemeProvider theme={theme}>
-      <div style={{ height: 3000, width: 900 }}>
+      <div style={{ height: 3000, width: 1000 }}>
         <DataGrid
           rows={this.props.gearItems.map(item => ({
             "id": item.itemId,
@@ -35,7 +46,8 @@ class GearItemsTable extends React.Component<GearItemsProps> {
             "name": item.name,
             "isPersonal": item.isPersonal,
             "mass": this.displayMass(item.oz),
-            "kind": item.kind
+            "kind": item.kind,
+            "edit": undefined, // defined in the column's `renderCell` impl.
           }))}
           columns={columns}
           pageSize={100}
