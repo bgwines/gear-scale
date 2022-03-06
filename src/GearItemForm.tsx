@@ -15,7 +15,7 @@ import TextField from '@mui/material/TextField';
 
 import { GearItem, GearKind } from './types';
 
-const getCleanFormState = (): GearItem => {
+const getCleanGearItem = (): GearItem => {
   return {
     itemId: "",
     name: "",
@@ -26,12 +26,16 @@ const getCleanFormState = (): GearItem => {
   };
 };
 
+interface FormState {
+  isOpen: boolean;
+  gearItem: GearItem;
+}
 
 interface Props {
   isOpen: boolean;
   onClose: Function;
   gearItem: GearItem;
-  editFormState: Function;
+  editFormState: (formState: FormState) => void;
 }
 
 // TODO: form validation
@@ -104,7 +108,10 @@ export default function GearItemForm(props: Props) {
   };
 
   const setInitialState = () => {
-    props.editFormState(getCleanFormState());
+    props.editFormState({
+      isOpen: props.isOpen,
+      gearItem: getCleanGearItem()
+    });
   };
 
   const onClose = () => {
