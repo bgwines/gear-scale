@@ -22,7 +22,6 @@ serverGearItemToClient item = ClientTypes.GearItem
     , ClientTypes.creatorUserId = DB._gearitemCreatorUserId item
     }
 
-
 searchGearItems :: MonadIO m => Maybe T.Text -> m [ClientTypes.GearItem]
 searchGearItems Nothing = return []
 searchGearItems (Just q) = do
@@ -32,7 +31,11 @@ searchGearItems (Just q) = do
 putGearItem :: MonadIO m => ClientTypes.GearItem -> m T.Text
 putGearItem clientGearItem = do
   liftIO $ putStrLn $ "/putGearItem body=" ++ show clientGearItem
-  itemId <- Ids.generate
+
+  let clientItemId = ClientTypes.itemId clientGearItem
+  let isNew = clientItemId == ""
+  newItemId <- Ids.generate
+  let itemId = if isNew then newItemId else clientItemId
   let gearItem = DB.GearItem {
       DB._gearitemId            = itemId
     , DB._gearitemName          = ClientTypes.name          clientGearItem
@@ -41,5 +44,7 @@ putGearItem clientGearItem = do
     , DB._gearitemKind          = ClientTypes.kind          clientGearItem
     , DB._gearitemCreatorUserId = ClientTypes.creatorUserId clientGearItem
     }
-  liftIO $ DB.putGearItem gearItem
+
+  let insertItem = if isNew then DB.putGearItem else DB.updateGearItem
+  liftIO $ insertItem gearItem
   return itemId

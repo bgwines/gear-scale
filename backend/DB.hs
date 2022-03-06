@@ -13,6 +13,7 @@ module DB
   ( Db
   , db
   , putGearItem
+  , updateGearItem
   , getAllGearItems
   , getGearItemById
   , clearAllGearItems
@@ -27,9 +28,12 @@ import Database.Beam
       Identity,
       delete,
       insert,
+      update,
       insertValues,
+      save,
       runDelete,
       runInsert,
+      runUpdate,
       runSelectReturningOne,
       runSelectReturningList,
       select,
@@ -148,6 +152,11 @@ dbName = "gear_scale.db"
 ------------
 -- DB API --
 ------------
+
+updateGearItem :: GearItem -> IO ()
+updateGearItem gearItem = do
+  conn <- open dbName
+  runBeamSqlite conn $ runUpdate $ save (_gear_items db) gearItem
 
 putGearItem :: GearItem -> IO ()
 putGearItem gearItem = do
