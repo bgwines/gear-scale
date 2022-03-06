@@ -5,22 +5,39 @@ import sra from './sun-ribbon-2.jpeg';
 import * as BackendApi from './backend_api.js';
 import GearItemForm from './GearItemForm';
 import GearItemsTable from './GearItemsTable';
-import { GearItem, GearKind } from './types';
+import { GearItem } from './types';
 
 import Button from '@mui/material/Button';
 
-// TODO: "Rebalance group gear" button
+const getCleanGearItem = (): GearItem => {
+  return {
+    itemId: "",
+    name: "",
+    isPersonal: true,
+    oz: -1,
+    kind: "Base",
+    creatorUserId: "",
+  };
+};
+
+
+// TODO: "Rebalance group gear" feature
 // TODO: fire the network request prior to mounting
 // TODO: delete item
 export default function App(_: any) {
-  const [items, setItems] = useState([]);
-  const [gearItemFormStatus, setGearItemFormStatus] = useState({
+  const cleanGearItem = getCleanGearItem();
+
+  const emptyItems:Array<GearItem> = [];
+  const [items, setItems] = useState(emptyItems);
+  const [gearItemFormState, setGearItemFormState] = useState({
     isOpen: false,
-    itemForEditing: undefined
+    gearItem: cleanGearItem
   });
+
 
   React.useEffect(() => {
     BackendApi.getSearchGearItems("", (r: any) => {
+      console.log("setting items");
       setItems(r);
     }, (e: any) => {
       console.log("error " + e);
@@ -29,9 +46,9 @@ export default function App(_: any) {
 
   const plusFunction = useCallback((event) => {
     if (event.keyCode === 187) {
-      setGearItemFormStatus({
+      setGearItemFormState({
         isOpen: true,
-        itemForEditing: undefined,
+        gearItem: cleanGearItem,
       });
     }
   }, []);
@@ -46,16 +63,14 @@ export default function App(_: any) {
       return i.itemId === itemId;
     };
 
-    const itemForEditing = items.find(f);
-    setGearItemFormStatus({
+    const gearItem = items.find(f) as GearItem;
+    setGearItemFormState({
       isOpen: true,
-      itemForEditing: itemForEditing,
+      gearItem: gearItem,
     });
   };
 
   // TODO: [+]
-  console.log("gearItemFormStatus.itemForEditing:" + gearItemFormStatus.itemForEditing);
-  console.log("gearItemFormStatus.isOpen:" + gearItemFormStatus.isOpen);
   return (
     <div className="App">
       <header className="App-header">
@@ -65,17 +80,18 @@ export default function App(_: any) {
           alt="Sun Ribbon Arete" />
        <br/>
         <div>
-          <Button variant="outlined" onClick={() => setGearItemFormStatus({
+          <Button variant="outlined" onClick={() => setGearItemFormState({
               isOpen: true,
-              itemForEditing: undefined})}>
+              gearItem: cleanGearItem})}>
             Add gear item [+]
           </Button>
           <GearItemForm
-            isOpen={gearItemFormStatus.isOpen}
-            onClose={() => setGearItemFormStatus({
+            isOpen={gearItemFormState.isOpen}
+            onClose={() => setGearItemFormState({
               isOpen: false,
-              itemForEditing: undefined})}
-            initialState={gearItemFormStatus.itemForEditing}
+              gearItem: cleanGearItem})}
+            gearItem={gearItemFormState.gearItem}
+            editFormState={setGearItemFormState}
           />
         </div>
        <p>

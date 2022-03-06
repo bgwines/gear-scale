@@ -15,11 +15,23 @@ import TextField from '@mui/material/TextField';
 
 import { GearItem, GearKind } from './types';
 
+const getCleanFormState = (): GearItem => {
+  return {
+    itemId: "",
+    name: "",
+    isPersonal: true,
+    oz: -1,
+    kind: "Base",
+    creatorUserId: "",
+  };
+};
+
 
 interface Props {
   isOpen: boolean;
-  onClose: any;
-  initialState?: GearItem;
+  onClose: Function;
+  gearItem: GearItem;
+  editFormState: Function;
 }
 
 // TODO: form validation
@@ -29,29 +41,49 @@ interface Props {
 // TODO: I'm probably in a jsx mode when I should be in a tsx mode
 //       (which is maybe a minor mode?)
 export default function GearItemForm(props: Props) {
-  console.log("props.isOpen: " + props.isOpen);
-  console.log("props.initialState: " + props.initialState);
-
-  const cleanState = (): GearItem => {
-    return {
-      itemId: "",
-      name: "",
-      isPersonal: true,
-      oz: -1,
-      kind: "Base",
-      creatorUserId: "",
+  const setName = (value: string) => {
+    var newGearItem = {
+      ...props.gearItem
     };
-  };
+    newGearItem.name = value;
+    props.editFormState({
+      isOpen: props.isOpen,
+      gearItem: newGearItem
+    });
+  }
 
-  const initialState = (props.initialState !== undefined ?
-    props.initialState : cleanState());
+  const setIsPersonal = (value: boolean) => {
+    var newGearItem = {
+      ...props.gearItem
+    };
+    newGearItem.isPersonal = value;
+    props.editFormState({
+      isOpen: props.isOpen,
+      gearItem: newGearItem
+    });
+  }
 
-  const [itemId, setItemId] = useState(initialState.itemId);
-  const [name, setName] = useState(initialState.name);
-  const [isPersonal, setIsPersonal] = useState(initialState.isPersonal);
-  const [oz, setOz] = useState(initialState.oz);
-  const [kind, setKind] = useState(initialState.kind);
-  const [creatorUserId, setCreatorUserId] = useState(initialState.creatorUserId);
+  const setOz = (value: number) => {
+    var newGearItem = {
+      ...props.gearItem
+    };
+    newGearItem.oz = value;
+    props.editFormState({
+      isOpen: props.isOpen,
+      gearItem: newGearItem
+    });
+  }
+
+  const setKind = (value: GearKind) => {
+    var newGearItem = {
+      ...props.gearItem
+    };
+    newGearItem.kind = value;
+    props.editFormState({
+      isOpen: props.isOpen,
+      gearItem: newGearItem
+    });
+  }
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value !== "+") {
@@ -81,13 +113,7 @@ export default function GearItemForm(props: Props) {
   };
 
   const setInitialState = () => {
-    const state = cleanState();
-    setItemId(state.itemId);
-    setName(state.name);
-    setIsPersonal(state.isPersonal);
-    setOz(state.oz);
-    setKind(state.kind);
-    setCreatorUserId(state.creatorUserId);
+    props.editFormState(getCleanFormState());
   };
 
   const onClose = () => {
@@ -97,15 +123,7 @@ export default function GearItemForm(props: Props) {
 
   const handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
-    const payload = {
-      itemId: "",
-      name: name,
-      isPersonal: isPersonal,
-      oz: oz,
-      kind: kind,
-      creatorUserId: "",
-    }
-    BackendApi.postPutGearItem(payload, (r: any) => {
+    BackendApi.postPutGearItem(props.gearItem, (r: any) => {
       console.log("createGearItem success: " + r);
       setInitialState();
     }, (e: any) => {
@@ -138,7 +156,7 @@ export default function GearItemForm(props: Props) {
           label="Item name"
           fullWidth
           variant="standard"
-          value={name}
+          value={props.gearItem.name}
           onChange={handleNameChange}
         />
         <TextField
@@ -146,7 +164,7 @@ export default function GearItemForm(props: Props) {
           id="isPersonal"
           label="Is personal"
           variant="standard"
-          value={isPersonal}
+          value={props.gearItem.isPersonal}
           onChange={handleIsPersonalChange}
         /><br/>
         <TextField
@@ -157,7 +175,7 @@ export default function GearItemForm(props: Props) {
           InputProps={{
             endAdornment: <InputAdornment position="end">oz</InputAdornment>
           }}
-          value={oz === -1 ? "" : oz}
+          value={props.gearItem.oz === -1 ? "" : props.gearItem.oz}
           onChange={handleOzChange}
         /><br/>
         <TextField
@@ -166,7 +184,7 @@ export default function GearItemForm(props: Props) {
           id="kind"
           label="kind"
           variant="standard"
-          value={kind}
+          value={props.gearItem.kind}
           onChange={handleKindChange}
         >
         {kinds.map((kind) => (
