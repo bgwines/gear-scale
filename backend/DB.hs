@@ -14,6 +14,7 @@ module DB
   , db
   , putGearItem
   , getAllGearItems
+  , getGearItemById
   , clearAllGearItems
   , GearItemT(..)
   , GearItem(..)

@@ -1,76 +1,63 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import './App.css';
 import sra from './sun-ribbon-2.jpeg';
 import * as BackendApi from './backend_api.js';
 import AddGearItemsForm from './AddGearItemsForm';
 import GearItemsTable from './GearItemsTable';
-import { GearItem, GearKind } from './types';
+//import { GearItem, GearKind } from './types';
 
 import Button from '@mui/material/Button';
 
 // TODO: "Rebalance group gear" button
-class App extends React.Component<{}, { items: Array<GearItem>, isOpen: boolean }> {
-  constructor(props: any) {
-    super(props);
-    this.state = {
-      items: [],
-      isOpen: false,
-    };
+// TODO: fire the network request prior to mounting
+// TODO: delete item
+export default function App(_: any) {
+  const [items, setItems] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
 
-    this.handleClickOpen = this.handleClickOpen.bind(this);
-    this.handleClose = this.handleClose.bind(this);
-  }
-
-  handleClickOpen() {
-    this.setState({isOpen: true});
-  };
-
-  handleClose(_: any) {
-    this.setState({isOpen: false});
-  };
-
-  // TODO: fire the network request prior to mounting
-  // TODO: delete item
-  componentDidMount() {
+  React.useEffect(() => {
     BackendApi.getSearchGearItems("", (r: any) => {
-      this.setState({items: r});
+      setItems(r);
     }, (e: any) => {
       console.log("error " + e);
     });
-  }
+  }, []);
+
+  const plusFunction = useCallback((event) => {
+    if (event.keyCode === 187) {
+      setIsOpen(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener("keydown", plusFunction);
+    return () => { document.removeEventListener("keydown", plusFunction); };
+  }, [plusFunction]);
 
   // TODO: [+]
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={sra}
-            className="Sun-Ribbon"
-            width="1000px"
-            alt="Sun Ribbon Arete" />
-
-          <br/>
-          <div>
-            <Button variant="outlined" onClick={this.handleClickOpen}>
-              Add gear item [+]
-            </Button>
-            <AddGearItemsForm
-              isOpen={this.state.isOpen}
-              onClose={this.handleClose}
-            />
-          </div>
-
-          <p>
-            Items:
-          </p>
-          <GearItemsTable gearItems={this.state.items}/>
-        </header>
-      </div>
-    );
-  }
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={sra}
+          className="Sun-Ribbon"
+          width="1000px"
+          alt="Sun Ribbon Arete" />
+       <br/>
+        <div>
+          <Button variant="outlined" onClick={() => setIsOpen(true)}>
+            Add gear item [+]
+          </Button>
+          <AddGearItemsForm
+            isOpen={isOpen}
+            onClose={() => setIsOpen(false)}
+          />
+        </div>
+       <p>
+          Items:
+        </p>
+        <GearItemsTable gearItems={items}/>
+      </header>
+    </div>
+  );
 }
-
-
-export default App;

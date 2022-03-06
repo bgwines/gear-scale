@@ -36,12 +36,9 @@ interface GearItemsFormState {
 class AddGearItemsForm extends React.Component<SimpleDialogProps, GearItemsFormState> {
   constructor(props: any) {
     super(props);
-    this.state = {
-      name: "",
-      isPersonal: true,
-      oz: -1,
-      kind: "Base",
-    };
+
+    this.initialState = this.initialState.bind(this);
+    this.state = this.initialState();
 
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleIsPersonalChange = this.handleIsPersonalChange.bind(this);
@@ -49,14 +46,35 @@ class AddGearItemsForm extends React.Component<SimpleDialogProps, GearItemsFormS
     this.handleKindChange = this.handleKindChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleSubmitAndClose = this.handleSubmitAndClose.bind(this);
+    this.onClose = this.onClose.bind(this);
+  }
+
+  initialState(): GearItemsFormState {
+    return {
+      name: "",
+      isPersonal: true,
+      oz: -1,
+      kind: "Base",
+    }
   }
 
   handleNameChange(e: React.ChangeEvent<HTMLInputElement>) {
-    this.setState({name: e.target.value});
+    if (e.target.value !== "+") {
+      // Plus key opens the dialog, but also populates the `name` field since
+      // that's the default-focused field
+      this.setState({name: e.target.value});
+    }
   }
 
   handleIsPersonalChange(e: React.ChangeEvent<HTMLInputElement>) {
-    this.setState({isPersonal: e.target.value === "true"});
+    if (e.target.value) {
+      const ch = e.target.value[e.target.value.length - 1];
+      if (ch === 't') {
+        this.setState({ isPersonal: true});
+      } else if (ch === 'f') {
+        this.setState({ isPersonal: false});
+      }
+    }
   }
 
   handleOzChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -69,6 +87,11 @@ class AddGearItemsForm extends React.Component<SimpleDialogProps, GearItemsFormS
 
   handleSubmitAndClose(event: React.SyntheticEvent) {
     this.handleSubmit(event);
+    this.onClose();
+  }
+
+  onClose() {
+    this.setState(this.initialState());
     this.props.onClose();
   }
 
@@ -84,9 +107,13 @@ class AddGearItemsForm extends React.Component<SimpleDialogProps, GearItemsFormS
     }
     BackendApi.postPutGearItem(payload, (r: any) => {
       console.log("createGearItem success: " + r);
+      this.setState(this.initialState());
     }, (e: any) => {
       console.log("createGearItem error: " + e);
     });
+
+    // TODO focus first elem
+    // TODO sort
     return false;
   }
 
@@ -94,7 +121,7 @@ class AddGearItemsForm extends React.Component<SimpleDialogProps, GearItemsFormS
     // TODO: reference GearKind
     const kinds = ["Base", "Technical", "Clothing", "Electronic", "Nutrition"];
     return (
-      <Dialog onClose={this.props.onClose} open={this.props.isOpen}>
+      <Dialog onClose={this.onClose} open={this.props.isOpen}>
         <DialogTitle>Add gear item</DialogTitle>
         <DialogContent>
         <DialogContentText>
@@ -111,7 +138,6 @@ class AddGearItemsForm extends React.Component<SimpleDialogProps, GearItemsFormS
             onChange={this.handleNameChange}
           />
           <TextField
-            autoFocus
             margin="dense"
             id="isPersonal"
             label="Is personal"
@@ -120,7 +146,6 @@ class AddGearItemsForm extends React.Component<SimpleDialogProps, GearItemsFormS
             onChange={this.handleIsPersonalChange}
           /><br/>
           <TextField
-            autoFocus
             margin="dense"
             id="oz"
             label="Mass"
@@ -132,7 +157,6 @@ class AddGearItemsForm extends React.Component<SimpleDialogProps, GearItemsFormS
             onChange={this.handleOzChange}
           /><br/>
           <TextField
-            autoFocus
             select
             margin="dense"
             id="kind"
@@ -150,7 +174,7 @@ class AddGearItemsForm extends React.Component<SimpleDialogProps, GearItemsFormS
         <DialogActions>
           <Button onClick={this.handleSubmit}>Save & New</Button>
           <Button onClick={this.handleSubmitAndClose}>Save</Button>
-          <Button onClick={this.props.onClose}>Cancel</Button>
+          <Button onClick={this.onClose}>Cancel</Button>
         </DialogActions>
         </DialogContent>
       </Dialog>
