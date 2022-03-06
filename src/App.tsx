@@ -69,6 +69,22 @@ export default function App(_: any) {
     });
   };
 
+  const deleteItem = (itemId: string) => {
+    const f = (i: GearItem): boolean => {
+      return i.itemId !== itemId;
+    };
+
+    // TODO: error dialogs
+    BackendApi.postDeleteGearItem(itemId, (r: any) => {
+      console.log("deleteGearItem success: " + r);
+      const newItems = items.filter(f);
+      setItems(newItems);
+    }, (e: any) => {
+      console.log("deleteGearItem error: " + e);
+    });
+
+  };
+
   // TODO: [+]
   return (
     <div className="App">
@@ -97,7 +113,10 @@ export default function App(_: any) {
        <p>
           Items:
         </p>
-      <GearItemsTable gearItems={items} editItem={editItem}/>
+      <GearItemsTable
+        gearItems={items}
+        editItem={editItem}
+        deleteItem={deleteItem}/>
       </header>
     </div>
   );

@@ -5,6 +5,7 @@
 {-# LANGUAGE GADTs #-}
 {-# LANGUAGE MultiParamTypeClasses#-}
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE ScopedTypeVariables #-}
 {-# LANGUAGE StandaloneDeriving #-}
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE UndecidableInstances #-}
@@ -14,6 +15,7 @@ module DB
   , db
   , putGearItem
   , updateGearItem
+  , deleteGearItem
   , getAllGearItems
   , getGearItemById
   , clearAllGearItems
@@ -152,6 +154,14 @@ dbName = "gear_scale.db"
 ------------
 -- DB API --
 ------------
+
+-- TODO: implement
+deleteGearItem :: Text -> IO ()
+deleteGearItem itemId = do
+  putStrLn "Delete not implemented"
+  --let columnarItemId :: Columnar Identity Text = undefined
+  --conn <- open dbName
+  --runBeamSqlite conn $ runDelete $ delete (_gear_items db) (\item -> _gearitemId item ==. columnarItemId)
 
 updateGearItem :: GearItem -> IO ()
 updateGearItem gearItem = do

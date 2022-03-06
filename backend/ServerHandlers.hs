@@ -2,6 +2,7 @@
 
 module ServerHandlers
   ( putGearItem
+  , deleteGearItem
   , searchGearItems
   ) where
 
@@ -27,6 +28,13 @@ searchGearItems Nothing = return []
 searchGearItems (Just q) = do
   liftIO $ putStrLn $ "/searchGearItems?q=" ++ T.unpack q
   map serverGearItemToClient <$> liftIO DB.getAllGearItems
+
+-- TODO: error handling on all server endpoints
+deleteGearItem :: MonadIO m => T.Text -> m Bool
+deleteGearItem itemId = do
+  liftIO $ putStrLn $ "/deleteGearItem itemId=" ++ T.unpack itemId
+  liftIO $ DB.deleteGearItem itemId
+  return True
 
 putGearItem :: MonadIO m => ClientTypes.GearItem -> m T.Text
 putGearItem clientGearItem = do

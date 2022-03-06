@@ -12,13 +12,14 @@ import { createTheme } from '@mui/material/styles';
 
 export interface GearItemsProps {
   gearItems: Array<GearItem>;
-  editItem: any;
+  editItem: (itemId: string) => void;
+  deleteItem: (itemId: string) => void;
 }
 
 class GearItemsTable extends React.Component<GearItemsProps> {
   render() {
     const columns: GridColDef[] = [
-      { field: "name", headerName: "Name", width: 600 },
+      { field: "name", headerName: "Name", width: 500 },
       { field: "mass", headerName: "Mass", width: 100 },
       { field: "isPersonal", headerName: "Personal", width: 100 },
       { field: "kind", headerName: "Kind", width: 100 },
@@ -29,6 +30,15 @@ class GearItemsTable extends React.Component<GearItemsProps> {
             this.props.editItem(itemId);
           };
           return <Button variant="outlined" onClick={onClick}>Edit</Button>;
+        }
+      },
+      { field: "delete", headerName: "Delete", width: 100,
+        sortable: false, renderCell: (params: GridRenderCellParams) => {
+          const onClick = () => {
+            const itemId = params.row.id;
+            this.props.deleteItem(itemId);
+          };
+          return <Button variant="outlined" onClick={onClick}>Delete</Button>;
         }
       },
     ];
@@ -48,6 +58,7 @@ class GearItemsTable extends React.Component<GearItemsProps> {
             "mass": this.displayMass(item.oz),
             "kind": item.kind,
             "edit": undefined, // defined in the column's `renderCell` impl.
+            "delete": undefined, // defined in the column's `renderCell` impl.
           }))}
           columns={columns}
           pageSize={100}

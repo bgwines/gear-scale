@@ -29,6 +29,8 @@ import qualified ClientTypes
 type LimitedAPI
     =    "putGearItem"     :> ReqBody '[JSON] ClientTypes.GearItem
                            :> Post '[JSON] T.Text
+    :<|> "deleteGearItem"  :> ReqBody '[JSON] T.Text
+                           :> Post '[JSON] Bool
     :<|> "searchGearItems" :> QueryParam "q" T.Text
                            :> Get '[JSON] [ClientTypes.GearItem]
 

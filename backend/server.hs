@@ -16,6 +16,7 @@ import qualified ServerHandlers
 server :: Servant.Server ServerAPI.FullAPI
 server =
     (    ServerHandlers.putGearItem
+    :<|> ServerHandlers.deleteGearItem
     :<|> ServerHandlers.searchGearItems )
 
 app :: Network.Wai.Application
