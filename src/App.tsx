@@ -91,6 +91,7 @@ export default function App(_: any) {
               gearItem: cleanGearItem})}
             gearItem={gearItemFormState.gearItem}
             editFormState={setGearItemFormState}
+            isNewItem={gearItemFormState.gearItem.itemId === ""}
           />
         </div>
        <p>

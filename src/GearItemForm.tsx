@@ -32,6 +32,7 @@ interface FormState {
 }
 
 interface Props {
+  isNewItem: boolean;
   isOpen: boolean;
   onClose: Function;
   gearItem: GearItem;
@@ -107,23 +108,23 @@ export default function GearItemForm(props: Props) {
     setKind(e.target.value as GearKind);
   };
 
-  const setInitialState = () => {
+  const setCleanState = (isOpen: boolean) => {
     props.editFormState({
-      isOpen: props.isOpen,
+      isOpen: isOpen,
       gearItem: getCleanGearItem()
     });
   };
 
+  // TODO: not calling props.onClose here; this is OK but can diverge
   const onClose = () => {
-    setInitialState();
-    props.onClose();
+    setCleanState(false);
   };
 
   const handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
     BackendApi.postPutGearItem(props.gearItem, (r: any) => {
       console.log("createGearItem success: " + r);
-      setInitialState();
+      setCleanState(true);
     }, (e: any) => {
       console.log("createGearItem error: " + e);
     });
@@ -140,13 +141,13 @@ export default function GearItemForm(props: Props) {
 
   // TODO: reference GearKind
   const kinds = ["Base", "Technical", "Clothing", "Electronic", "Nutrition"];
+
+  const verb = props.isNewItem ? "Add" : "Edit"
+
   return (
     <Dialog onClose={onClose} open={props.isOpen}>
-      <DialogTitle>Add gear item</DialogTitle>
+      <DialogTitle>{verb} gear item</DialogTitle>
       <DialogContent>
-      <DialogContentText>
-      This is the dialog where you can enter a new gear item
-      </DialogContentText>
         <TextField
           autoFocus
           margin="dense"
