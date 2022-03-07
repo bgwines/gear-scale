@@ -192,11 +192,11 @@ export default function GearItemForm(props: Props) {
           </MenuItem>
         ))}
         </TextField>
-      <DialogActions>
-        <Button onClick={handleSubmit}>Save & New</Button>
-        <Button onClick={handleSubmitAndClose}>Save</Button>
-        <Button onClick={onClose}>Cancel</Button>
-      </DialogActions>
+        <DialogActions>
+          <Button onClick={handleSubmit}>Save & New</Button>
+          <Button onClick={handleSubmitAndClose}>Save</Button>
+          <Button onClick={onClose}>Cancel</Button>
+        </DialogActions>
       </DialogContent>
     </Dialog>
   );

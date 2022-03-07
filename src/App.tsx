@@ -5,6 +5,7 @@ import sra from './sun-ribbon-2.jpeg';
 import * as BackendApi from './backend_api.js';
 import GearItemForm from './GearItemForm';
 import GearItemsTable from './GearItemsTable';
+import TripForm from './TripForm';
 import { GearItem } from './types';
 
 import Button from '@mui/material/Button';
@@ -29,6 +30,7 @@ export default function App(_: any) {
 
   const emptyItems:Array<GearItem> = [];
   const [items, setItems] = useState(emptyItems);
+  const [tripFormIsOpen, setTripFormIsOpen] = useState(false);
   const [gearItemFormState, setGearItemFormState] = useState({
     isOpen: false,
     gearItem: cleanGearItem
@@ -43,8 +45,9 @@ export default function App(_: any) {
     });
   }, []);
 
-  const plusFunction = useCallback((event) => {
-    if (event.keyCode === 187) {
+  const handleKeyDown = useCallback((event) => {
+    if (event.keyCode === 187 && !tripFormIsOpen) {
+      // +
       setGearItemFormState({
         isOpen: true,
         gearItem: cleanGearItem,
@@ -53,9 +56,9 @@ export default function App(_: any) {
   }, []);
 
   useEffect(() => {
-    document.addEventListener("keydown", plusFunction);
-    return () => { document.removeEventListener("keydown", plusFunction); };
-  }, [plusFunction]);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => { document.removeEventListener("keydown", handleKeyDown); };
+  }, [handleKeyDown]);
 
   const editItem = (itemId: string) => {
     const f = (i: GearItem): boolean => {
@@ -85,7 +88,6 @@ export default function App(_: any) {
 
   };
 
-  // TODO: [+]
   return (
     <div className="App">
       <header className="App-header">
@@ -93,12 +95,15 @@ export default function App(_: any) {
           className="Sun-Ribbon"
           width="1000px"
           alt="Sun Ribbon Arete" />
-       <br/>
+        <br/>
         <div>
           <Button variant="outlined" onClick={() => setGearItemFormState({
               isOpen: true,
               gearItem: cleanGearItem})}>
             Add gear item [+]
+          </Button>
+          <Button variant="outlined" onClick={() => setTripFormIsOpen(true)}>
+            New trip
           </Button>
           <GearItemForm
             isOpen={gearItemFormState.isOpen}
@@ -109,15 +114,22 @@ export default function App(_: any) {
             editFormState={setGearItemFormState}
             isNewItem={gearItemFormState.gearItem.itemId === ""}
           />
+          <TripForm
+            isOpen={tripFormIsOpen}
+            isNewTrip={true}
+            onClose={() => setTripFormIsOpen(false)}
+          />
         </div>
-       <p>
-          Items:
+        <div>
+        <p>
+           Items:
         </p>
-      <GearItemsTable
-        gearItems={items}
-        editItem={editItem}
-        deleteItem={deleteItem}/>
-      </header>
+        <GearItemsTable
+          gearItems={items}
+          editItem={editItem}
+          deleteItem={deleteItem}/>
+        </div>
+      </header>  // TODO: move this
     </div>
   );
 }
