@@ -4,6 +4,7 @@ module ServerHandlers
   ( putGearItem
   , deleteGearItem
   , searchGearItems
+  , putTrip
   ) where
 
 import Control.Monad.IO.Class ( MonadIO(..) )
@@ -56,3 +57,6 @@ putGearItem clientGearItem = do
   let insertItem = if isNew then DB.putGearItem else DB.updateGearItem
   liftIO $ insertItem gearItem
   return itemId
+
+putTrip :: MonadIO m => ClientTypes.Trip -> m T.Text
+putTrip clientGearItem = undefined

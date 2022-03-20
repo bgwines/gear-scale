@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 
 import './App.css';
 import * as BackendApi from './backend_api.js';
+import { Trip } from './types';
 
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -50,7 +51,13 @@ export default function TripForm(props: Props) {
   // TODO
   const handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
-    BackendApi.postPutGearItem(undefined, (r: any) => {
+    const trip: Trip = {
+      tripId: "",
+      tripName: tripName,
+      tripCreatorUserId: "",
+      tripMemberUserIdsCommaSeparated: people.join(","),
+    }
+    BackendApi.postPutTrip(trip, (r: any) => {
       console.log("createOrEditTrip success: " + r);
     }, (e: any) => {
       console.log("createOrEditTrip error: " + e);

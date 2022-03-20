@@ -26,6 +26,8 @@ import Servant
 import qualified Servant.API.ContentTypes
 import qualified ClientTypes
 
+-- TODO: /gearItem/POST or /DELETE or etc.
+-- delete should not be a POST
 type LimitedAPI
     =    "putGearItem"     :> ReqBody '[JSON] ClientTypes.GearItem
                            :> Post '[JSON] T.Text
@@ -33,6 +35,8 @@ type LimitedAPI
                            :> Post '[JSON] Bool
     :<|> "searchGearItems" :> QueryParam "q" T.Text
                            :> Get '[JSON] [ClientTypes.GearItem]
+    :<|> "putTrip"         :> ReqBody '[JSON] ClientTypes.Trip
+                           :> Post '[JSON] T.Text
 
 type FullAPI = LimitedAPI
 

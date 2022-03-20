@@ -41,6 +41,7 @@ executable tsdef
                     , aeson-typescript
                     , servant
                     , servant-server
+                    , servant-typescript
                     , beam-core
                     , beam-migrate
                     , beam-sqlite

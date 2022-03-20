@@ -19,6 +19,13 @@ packages:
   original:
     hackage: beam-migrate-0.5.1.2@sha256:e385a2ddb213398aca38a4f15334613057552b83a467a81c0dc3562c49a59884,4923
 - completed:
+    hackage: servant-typescript-0.1.0.2@sha256:92cfd7f7d96de7a01d3834ef50daec181c54b94b1daa3f5a497d5561b86ea7d3,3030
+    pantry-tree:
+      size: 652
+      sha256: e29645c0a0c838b78a8592bda8229a94aec8e69ee4593f908a5d89f8de7a49c9
+  original:
+    hackage: servant-typescript-0.1.0.2@sha256:92cfd7f7d96de7a01d3834ef50daec181c54b94b1daa3f5a497d5561b86ea7d3,3030
+- completed:
     subdir: beam-core
     name: beam-core
     version: 0.9.2.1

@@ -1,4 +1,6 @@
+stack.yaml.lock
 .log/
+build/
 dist
 dist-*
 cabal-dev

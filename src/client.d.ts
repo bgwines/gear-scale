@@ -1,8 +1,4 @@
-export type GearKind = "Base" | "Technical" | "Clothing" | "Electronic" | "Nutrition";
-
-export type GearItem = IGearItem;
-
-interface IGearItem {
+export interface IGearItem {
   itemId: string;
   name: string;
   isPersonal: boolean;
@@ -11,11 +7,15 @@ interface IGearItem {
   creatorUserId: string;
 }
 
-export type Trip = ITrip;
-
-interface ITrip {
+export interface ITrip {
   tripId: string;
   tripName: string;
   tripCreatorUserId: string;
   tripMemberUserIdsCommaSeparated: string;
 }
+
+export type GearItem = IGearItem;
+
+export type GearKind = "Base" | "Technical" | "Clothing" | "Electronic" | "Nutrition";
+
+export type Trip = ITrip;

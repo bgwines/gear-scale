@@ -17,7 +17,9 @@ server :: Servant.Server ServerAPI.FullAPI
 server =
     (    ServerHandlers.putGearItem
     :<|> ServerHandlers.deleteGearItem
-    :<|> ServerHandlers.searchGearItems )
+    :<|> ServerHandlers.searchGearItems
+    :<|> ServerHandlers.putTrip
+    )
 
 app :: Network.Wai.Application
 app = Servant.serve ServerAPI.fullApi server

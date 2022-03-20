@@ -5,6 +5,7 @@
 module ClientTypes
   ( GearKind(..)
   , GearItem(..)
+  , Trip(..)
   ) where
 
 import Data.Aeson.TH ( defaultOptions, deriveJSON )
@@ -22,8 +23,17 @@ data GearItem = GearItem
     , isPersonal    :: Bool
     , oz            :: Double
     , kind          :: GearKind
-    , creatorUserId :: Data.Text.Text }
-    deriving (Eq, Show)
+    , creatorUserId :: Data.Text.Text
+    } deriving (Eq, Show)
+
+-- TODO: trip kinds
+data Trip = Trip
+    { tripId                           :: Data.Text.Text
+    , tripName                         :: Data.Text.Text
+    , tripCreatorUserId                :: Data.Text.Text
+    , tripMemberUserIdsCommaSeparated  :: Data.Text.Text
+    } deriving (Eq, Show)
 
 $(deriveJSON defaultOptions ''GearKind)
 $(deriveJSON defaultOptions ''GearItem)
+$(deriveJSON defaultOptions ''Trip)

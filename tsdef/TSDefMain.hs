@@ -14,18 +14,29 @@ import Data.Aeson.TypeScript.TH
       formatTSDeclarations,
       deriveTypeScript )
 import Data.Proxy ( Proxy(..) )
-import Servant.JS ( writeJSForAPI, vanillaJS )
+import Servant.TypeScript ( writeTypeScriptLibrary )
 
 $(deriveTypeScript defaultOptions ''ClientTypes.GearKind)
 $(deriveTypeScript defaultOptions ''ClientTypes.GearItem)
+$(deriveTypeScript defaultOptions ''ClientTypes.Trip)
 
 main :: IO ()
 main = do
   putStrLn "Writing API to `src/backend_api.js`..."
-  writeJSForAPI ServerAPI.limitedApi vanillaJS "src/backend_api.js"
+  writeTypeScriptLibrary ServerAPI.limitedApi "src/"
 
   putStrLn "Writing TS types to `src/types.ts`..."
   let decl1 = "export " ++ formatTSDeclarations (getTypeScriptDeclarations (Proxy :: Proxy ClientTypes.GearKind))
   let decl2 = "export " ++ formatTSDeclarations (getTypeScriptDeclarations (Proxy :: Proxy ClientTypes.GearItem))
-  let decls = decl1 ++ "\n\n" ++ decl2
+  let decl3 = "export " ++ formatTSDeclarations (getTypeScriptDeclarations (Proxy :: Proxy ClientTypes.Trip))
+
+  -- TODO: currently need to manually add
+  --           import {Trip, GearItem, GearKind} from "./client.d";
+  --       to src/client.ts
+  --
+  --       currently need to manually add `export` to all top-level functions in
+  --       `src/backend_api.js`
+
+
+  let decls = decl1 ++ "\n\n" ++ decl2 ++ "\n\n" ++ decl3
   writeFile "src/types.ts" decls

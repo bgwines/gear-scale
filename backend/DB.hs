@@ -13,6 +13,9 @@
 module DB
   ( Db
   , db
+  , putTrip
+  , updateTrip
+  , deleteTrip
   , putGearItem
   , updateGearItem
   , deleteGearItem
@@ -38,6 +41,7 @@ import Database.Beam
       runUpdate,
       runSelectReturningOne,
       runSelectReturningList,
+      val_,
       select,
       all_,
       filter_,
@@ -105,6 +109,61 @@ instance Table GearItemT where
    data PrimaryKey GearItemT f = GearItemId (Columnar f Text) deriving (Generic, Beamable)
    primaryKey = GearItemId . _gearitemId
 
+-----------
+-- TripT --
+-----------
+
+data TripT f
+    = Trip
+    { _tripId            :: Columnar f Text
+    , _tripName          :: Columnar f Text
+    , _tripCreatorUserId :: Columnar f Text }
+    deriving Generic
+instance Beamable TripT
+
+type Trip = TripT Identity
+deriving instance Show Trip
+deriving instance Read Trip
+deriving instance Eq Trip
+instance ToJSON Trip where
+  toEncoding = genericToEncoding defaultOptions
+
+instance FromJSON Trip
+
+type TripId = PrimaryKey TripT Identity
+
+instance Table TripT where
+   data PrimaryKey TripT f = TripId (Columnar f Text) deriving (Generic, Beamable)
+   primaryKey = TripId . _tripId
+
+------------------
+-- TripMembersT --
+------------------
+
+data TripMembersT f
+    = TripMembers
+    { _tripmembersTripId         :: Columnar f Text
+    , _tripmembersMemberUserName :: Columnar f Text }
+    deriving Generic
+instance Beamable TripMembersT
+
+type TripMembers = TripMembersT Identity
+deriving instance Show TripMembers
+deriving instance Read TripMembers
+deriving instance Eq TripMembers
+instance ToJSON TripMembers where
+  toEncoding = genericToEncoding defaultOptions
+
+instance FromJSON TripMembers
+
+type TripMembersId = PrimaryKey TripMembersT Identity
+
+instance Table TripMembersT where
+   data PrimaryKey TripMembersT f = TripMembersId (Columnar f Text) (Columnar f Text) deriving (Generic, Beamable)
+   primaryKey t = TripMembersId (_tripmembersTripId t) (_tripmembersMemberUserName t)
+
+
+
 --------------------
 -- GearSelectionT --
 --------------------
@@ -142,6 +201,7 @@ instance Table GearItemT where
 
 data Db f = Db
   { _gear_items :: f (TableEntity GearItemT)
+  , _trips      :: f (TableEntity TripT)
   }
   deriving (Generic, Database be)
 
@@ -155,13 +215,33 @@ dbName = "gear_scale.db"
 -- DB API --
 ------------
 
+-- trips
+
 -- TODO: implement
+deleteTrip :: Text -> IO ()
+deleteTrip tripId = do
+  putStrLn "Delete not implemented"
+
+updateTrip :: Trip -> IO ()
+updateTrip trip = do
+  putStrLn "Update not implemented"
+  -- conn <- open dbName
+  -- runBeamSqlite conn $ runUpdate $ save (_trips db) trip
+
+putTrip :: Trip -> IO ()
+putTrip trip = do
+  putStrLn "Put not implemented"
+  -- conn <- open dbName
+  -- runBeamSqlite conn $ runInsert $ insert (_trips db) $ insertValues [ trip ]
+
+-- gear items
+
+
 deleteGearItem :: Text -> IO ()
 deleteGearItem itemId = do
-  putStrLn "Delete not implemented"
-  --let columnarItemId :: Columnar Identity Text = undefined
-  --conn <- open dbName
-  --runBeamSqlite conn $ runDelete $ delete (_gear_items db) (\item -> _gearitemId item ==. columnarItemId)
+  --putStrLn "Delete not implemented"
+  conn <- open dbName
+  runBeamSqlite conn $ runDelete $ delete (_gear_items db) (\item -> _gearitemId item ==. val_ itemId)
 
 updateGearItem :: GearItem -> IO ()
 updateGearItem gearItem = do
