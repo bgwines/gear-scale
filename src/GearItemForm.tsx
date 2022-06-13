@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
 import './App.css';
-import * as BackendApi from './backend_api.js';
+import * as BackendApi from './client';
 
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -13,7 +13,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
 
-import { GearItem, GearKind } from './types';
+import { GearItem, GearKind } from './client.d';
 
 const getCleanGearItem = (): GearItem => {
   return {
@@ -122,11 +122,9 @@ export default function GearItemForm(props: Props) {
 
   const handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
-    BackendApi.postPutGearItem(props.gearItem, (r: any) => {
+    BackendApi.postPutgearitem(props.gearItem).then((r) => {
       console.log("createGearItem success: " + r);
       setCleanState(true);
-    }, (e: any) => {
-      console.log("createGearItem error: " + e);
     });
 
     // TODO focus first elem

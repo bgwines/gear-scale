@@ -22,21 +22,12 @@ $(deriveTypeScript defaultOptions ''ClientTypes.Trip)
 
 main :: IO ()
 main = do
-  putStrLn "Writing API to `src/backend_api.js`..."
+  putStrLn "Writing API to `src/client.ts`..."
+  putStrLn "Writing TS types to `src/client.d.ts`..."
   writeTypeScriptLibrary ServerAPI.limitedApi "src/"
-
-  putStrLn "Writing TS types to `src/types.ts`..."
-  let decl1 = "export " ++ formatTSDeclarations (getTypeScriptDeclarations (Proxy :: Proxy ClientTypes.GearKind))
-  let decl2 = "export " ++ formatTSDeclarations (getTypeScriptDeclarations (Proxy :: Proxy ClientTypes.GearItem))
-  let decl3 = "export " ++ formatTSDeclarations (getTypeScriptDeclarations (Proxy :: Proxy ClientTypes.Trip))
 
   -- TODO: currently need to manually add
   --           import {Trip, GearItem, GearKind} from "./client.d";
   --       to src/client.ts
   --
-  --       currently need to manually add `export` to all top-level functions in
-  --       `src/backend_api.js`
-
-
-  let decls = decl1 ++ "\n\n" ++ decl2 ++ "\n\n" ++ decl3
-  writeFile "src/types.ts" decls
+  --       we don't yet use src/client.ts; who writes to it?

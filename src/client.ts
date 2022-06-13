@@ -1,5 +1,24 @@
 import queryString from "query-string";
-import {Trip, GearItem, GearKind} from "./client.d";
+import {Trip, GearItem} from "./client.d";
+
+export function getSearchtrips(q?: string, fetchFn?: (input: RequestInfo, init?: RequestInit) => Promise<Response>): Promise<Trip[]> {
+  let options: RequestInit = {
+    credentials: "same-origin" as RequestCredentials,
+    method: "GET",
+    headers: {"Content-Type": "application/json;charset=utf-8"}
+  };
+
+  let params = {q};
+  return (fetchFn || window.fetch)(`/searchTrips` + "?" + queryString.stringify(params), options).then((response) => {
+    return new Promise((resolve, reject) => {
+      if (response.status !== 200) {
+        return response.text().then((text) => reject({text, status: response.status}));
+      } else {
+        return response.json().then((json) => resolve(json));
+      }
+    });
+  });
+}
 
 export function postPuttrip(body: Trip, fetchFn?: (input: RequestInfo, init?: RequestInit) => Promise<Response>): Promise<string> {
   let options: RequestInit = {

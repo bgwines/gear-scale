@@ -2,11 +2,11 @@ import React, { useCallback, useEffect, useState } from 'react';
 
 import './App.css';
 import sra from './sun-ribbon-2.jpeg';
-import * as BackendApi from './backend_api.js';
+import * as BackendApi from './client';
 import GearItemForm from './GearItemForm';
 import GearItemsTable from './GearItemsTable';
 import TripForm from './TripForm';
-import { GearItem } from './types';
+import { GearItem, Trip } from './client.d';
 
 import Button from '@mui/material/Button';
 
@@ -35,15 +35,27 @@ export default function App(_: any) {
     isOpen: false,
     gearItem: cleanGearItem
   });
+  const emptyTrips:Array<Trip> = [];
+  const [trips, setTrips] = useState(emptyTrips);
 
 
   React.useEffect(() => {
-    BackendApi.getSearchGearItems("", (r: any) => {
-      setItems(r);
-    }, (e: any) => {
-      console.log("error " + e);
+    BackendApi.getSearchgearitems("").then((r) => {
+      if (items.length === 0) {  // TODO
+        console.log("setting gear items");
+        setItems(r);
+      }
     });
-  }, []);
+  });
+
+  React.useEffect(() => {
+    BackendApi.getSearchtrips("").then((r) => {
+      if (trips.length === 0) {  // TODO
+        console.log("setting trips");
+        setTrips(r);
+      }
+    });
+  });
 
   const handleKeyDown = useCallback((event) => {
     if (event.keyCode === 187 && !tripFormIsOpen) {
@@ -78,16 +90,14 @@ export default function App(_: any) {
     };
 
     // TODO: error dialogs
-    BackendApi.postDeleteGearItem(itemId, (r: any) => {
+    BackendApi.postDeletegearitem(itemId).then((r) => {
       console.log("deleteGearItem success: " + r);
       const newItems = items.filter(f);
       setItems(newItems);
-    }, (e: any) => {
-      console.log("deleteGearItem error: " + e);
     });
-
   };
 
+  console.log("rendering");
   return (
     <div className="App">
       <header className="App-header">
@@ -129,7 +139,7 @@ export default function App(_: any) {
           editItem={editItem}
           deleteItem={deleteItem}/>
         </div>
-      </header>  // TODO: move this
+      </header>
     </div>
   );
 }

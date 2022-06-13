@@ -5,6 +5,7 @@ module ServerHandlers
   , deleteGearItem
   , searchGearItems
   , putTrip
+  , searchTrips
   ) where
 
 import Control.Monad.IO.Class ( MonadIO(..) )
@@ -22,6 +23,14 @@ serverGearItemToClient item = ClientTypes.GearItem
     , ClientTypes.oz            = DB._gearitemOz            item
     , ClientTypes.kind          = DB._gearitemKind          item
     , ClientTypes.creatorUserId = DB._gearitemCreatorUserId item
+    }
+
+serverTripToClient :: DB.Trip -> ClientTypes.Trip
+serverTripToClient trip = ClientTypes.Trip
+    { ClientTypes.tripId            = DB._tripId            trip
+    , ClientTypes.tripName          = DB._tripName          trip
+    , ClientTypes.tripCreatorUserId = DB._tripCreatorUserId trip
+    , ClientTypes.tripMemberUserIdsCommaSeparated = "" -- TODO
     }
 
 searchGearItems :: MonadIO m => Maybe T.Text -> m [ClientTypes.GearItem]
@@ -60,3 +69,10 @@ putGearItem clientGearItem = do
 
 putTrip :: MonadIO m => ClientTypes.Trip -> m T.Text
 putTrip clientGearItem = undefined
+
+searchTrips :: MonadIO m => Maybe T.Text -> m [ClientTypes.Trip]
+searchTrips Nothing = return []
+searchTrips (Just q) = do
+  -- TODO: filter by q
+  liftIO $ putStrLn $ "/searchTrips?q=" ++ T.unpack q
+  map serverTripToClient <$> liftIO DB.getAllTrips

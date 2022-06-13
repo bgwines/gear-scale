@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
 import './App.css';
-import * as BackendApi from './backend_api.js';
-import { Trip } from './types';
+import * as BackendApi from './client';
+import { Trip } from './client.d';
 
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -57,10 +57,8 @@ export default function TripForm(props: Props) {
       tripCreatorUserId: "",
       tripMemberUserIdsCommaSeparated: people.join(","),
     }
-    BackendApi.postPutTrip(trip, (r: any) => {
+    BackendApi.postPuttrip(trip).then((r) => {
       console.log("createOrEditTrip success: " + r);
-    }, (e: any) => {
-      console.log("createOrEditTrip error: " + e);
     });
 
     return false;

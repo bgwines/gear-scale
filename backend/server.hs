@@ -19,6 +19,7 @@ server =
     :<|> ServerHandlers.deleteGearItem
     :<|> ServerHandlers.searchGearItems
     :<|> ServerHandlers.putTrip
+    :<|> ServerHandlers.searchTrips
     )
 
 app :: Network.Wai.Application

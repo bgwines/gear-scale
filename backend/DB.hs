@@ -16,16 +16,19 @@ module DB
   , putTrip
   , updateTrip
   , deleteTrip
+  , getAllTrips
   , putGearItem
   , updateGearItem
   , deleteGearItem
   , getAllGearItems
   , getGearItemById
   , clearAllGearItems
-  , GearItemT(..)
+  , ClientTypes.GearKind(..)
   , GearItem(..)
   , GearItemId(..)
-  , ClientTypes.GearKind(..)
+  , GearItemT(..)
+  , Trip(..)
+  , TripT(..)
   ) where
 
 import Database.Beam
@@ -233,6 +236,18 @@ putTrip trip = do
   putStrLn "Put not implemented"
   -- conn <- open dbName
   -- runBeamSqlite conn $ runInsert $ insert (_trips db) $ insertValues [ trip ]
+
+getAllTrips :: IO [Trip]
+getAllTrips = do
+  putStrLn "Get not implemented"
+  let t = Trip { _tripId = "placeholderTripId"
+               , _tripName = "placeholderTripName"
+               , _tripCreatorUserId = "placeholderTripCreatorUserId"
+               }
+  return [t]
+  -- conn <- open dbName
+  -- runBeamSqlite conn $ runSelectReturningList $ select $ all_ (_trips db)
+
 
 -- gear items
 

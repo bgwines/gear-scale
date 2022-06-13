@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './App.css';
-import { GearItem, GearKind } from './types';
+import { GearItem } from './client.d';
 
 import Button from '@mui/material/Button';
 import { DataGrid, GridColDef, GridApi, GridRenderCellParams } from '@mui/x-data-grid';

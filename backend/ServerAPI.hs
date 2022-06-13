@@ -37,6 +37,8 @@ type LimitedAPI
                            :> Get '[JSON] [ClientTypes.GearItem]
     :<|> "putTrip"         :> ReqBody '[JSON] ClientTypes.Trip
                            :> Post '[JSON] T.Text
+    :<|> "searchTrips"     :> QueryParam "q" T.Text
+                           :> Get '[JSON] [ClientTypes.Trip]
 
 type FullAPI = LimitedAPI
 
